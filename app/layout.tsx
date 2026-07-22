@@ -12,19 +12,19 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     metadataBase: baseUrl,
     title: {
-      default: "CampusDrop — 캠퍼스의 오늘을 발견하세요",
+      default: "CampusDrop — 캠퍼스가 게임판이 됩니다",
       template: "%s | CampusDrop",
     },
     description:
-      "우리 학교의 맛집, 스터디, 행사와 중고 소식을 한곳에서 발견하는 캠퍼스 생활 플랫폼입니다.",
+      "GPS와 AR 단서를 팀원들과 해결하고 캠퍼스 혜택을 받는 협동 방탈출 탐험 앱 프로토타입입니다.",
     openGraph: {
       title: "CampusDrop",
-      description: "오늘 캠퍼스의 모든 발견",
-      images: [{ url: new URL("/og.png", baseUrl).toString() }],
+      description: "캠퍼스가 게임판이 됩니다",
+      images: [{ url: new URL("/og-v2.png", baseUrl).toString() }],
     },
     twitter: {
       card: "summary_large_image",
-      images: [new URL("/og.png", baseUrl).toString()],
+      images: [new URL("/og-v2.png", baseUrl).toString()],
     },
   };
 }

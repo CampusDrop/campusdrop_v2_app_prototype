@@ -1,5 +1,5 @@
 import { PrototypeApp } from "@/components/prototype/PrototypeApp";
 
-export default function StartPage() {
+export default function PrototypeRoutePage() {
   return <PrototypeApp />;
 }
