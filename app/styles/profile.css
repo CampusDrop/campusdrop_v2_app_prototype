@@ -86,5 +86,13 @@
 .coupon-ticket { background: linear-gradient(150deg, var(--color-brand-100), #fff0bd); display: grid; gap: .5rem; min-height: 24rem; padding: 3rem 1.2rem 1.5rem; text-align: center; }
 .coupon-ticket > span { color: var(--color-brand-500); font-size: 6rem; font-weight: 700; line-height: 1; }
 .coupon-ticket > p:last-child { color: var(--color-text-muted); }
-.qr-demo { align-items: center; background: repeating-conic-gradient(#292321 0 25%, white 0 50%) 50% / 1.2rem 1.2rem; border: 10px solid white; display: flex; font-size: 0; height: 14rem; justify-content: center; margin: auto; position: relative; width: 14rem; }
+.qr-use-panel { align-items: center; display: grid; gap: .7rem; justify-items: center; text-align: center; }
+.qr-use-panel > p { display: grid; }
+.qr-use-panel > p small, .qr-use-panel > small { color: var(--color-text-muted); }
+.qr-use-panel > strong { background: var(--color-surface); border-radius: var(--radius-pill); font-size: .72rem; letter-spacing: .08em; padding: .35rem .7rem; }
+.qr-demo { align-items: center; background: repeating-conic-gradient(#292321 0 25%, white 0 50%) 50% / 1rem 1rem; border: 12px solid white; box-shadow: var(--shadow-sm); display: flex; font-size: 0; height: 14rem; justify-content: center; margin: auto; position: relative; width: 14rem; }
+.qr-demo > i, .qr-demo > b, .qr-demo > em { background: white; border: 7px solid #292321; box-shadow: inset 0 0 0 5px white, inset 0 0 0 10px #292321; height: 3.6rem; position: absolute; width: 3.6rem; }
+.qr-demo > i { left: .3rem; top: .3rem; }
+.qr-demo > b { right: .3rem; top: .3rem; }
+.qr-demo > em { bottom: .3rem; left: .3rem; }
 .qr-demo small { background: white; border-radius: var(--radius-pill); color: var(--color-text); font-size: .85rem; font-weight: 700; padding: .35rem .55rem; }

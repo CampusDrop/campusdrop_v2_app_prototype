@@ -27,7 +27,12 @@ function CouponCard({ status }: { status: string }) {
 export function RewardDetailScreen() {
   const router = useRouter();
   const { state, update, notify } = useDemo();
-  const [confirm, setConfirm] = useState(false);
   const [qr, setQr] = useState(false);
-  return <div className="coupon-detail"><div className="coupon-ticket"><p className="eyebrow">CAMPUSDROP REWARD</p><span>10%</span><h1>제주몰빵<br />전 메뉴 할인</h1><p>오늘 23:59까지 · 남은 시간 05:21:08</p></div><section className="detail-body"><h2>사용 안내</h2><div className="info-list"><div><span>🏪</span><p><small>사용 매장</small><b>제주몰빵 세종대점</b></p></div><div><span>✓</span><p><small>사용 조건</small><b>1인 1회 · 다른 할인과 중복 불가</b></p></div></div><div className="notice-card">직원 앞에서 사용 버튼을 누르세요. 사용 처리 후에는 되돌릴 수 없어요.</div></section><div className="sticky-actions single"><button className="primary" disabled={state.coupon === "used"} onClick={() => setConfirm(true)}>{state.coupon === "used" ? "사용 완료된 쿠폰" : "직원 앞에서 사용하기"}</button></div>{confirm && <Modal title="지금 쿠폰을 사용할까요?" onClose={() => setConfirm(false)}><p className="muted">직원이 확인할 수 있도록 QR 화면을 보여 주세요.</p><div className="modal-actions"><button className="secondary" onClick={() => setConfirm(false)}>취소</button><button className="primary" onClick={() => { setConfirm(false); setQr(true); }}>QR 열기</button></div></Modal>}{qr && <Modal title="동적 사용 코드" onClose={() => setQr(false)}><div className="qr-demo">▦<small>03:00</small></div><button className="primary" onClick={() => { update({ coupon: "used" }); notify("쿠폰을 사용했어요"); setQr(false); router.push("/rewards"); }}>사용 완료</button></Modal>}</div>;
+  function completeUse() {
+    update({ coupon: "used" });
+    notify("쿠폰 사용이 완료됐어요");
+    setQr(false);
+    router.push("/rewards");
+  }
+  return <div className="coupon-detail"><div className="coupon-ticket"><p className="eyebrow">CAMPUSDROP REWARD</p><span>10%</span><h1>제주몰빵<br />전 메뉴 할인</h1><p>오늘 23:59까지 · 남은 시간 05:21:08</p></div><section className="detail-body"><h2>사용 안내</h2><div className="info-list"><div><span>🏪</span><p><small>사용 매장</small><b>제주몰빵 세종대점</b></p></div><div><span>✓</span><p><small>사용 조건</small><b>1인 1회 · 다른 할인과 중복 불가</b></p></div></div><div className="notice-card">직원 앞에서 사용 버튼을 누르면 확인용 QR 코드가 바로 열려요.</div></section><div className="sticky-actions single"><button className="primary" disabled={state.coupon === "used"} onClick={() => setQr(true)}>{state.coupon === "used" ? "사용 완료된 쿠폰" : "QR 코드 열고 사용하기"}</button></div>{qr && <Modal title="직원에게 QR을 보여 주세요" onClose={() => setQr(false)}><div className="qr-use-panel"><p><b>제주몰빵 세종대점</b><small>전 메뉴 10% 할인</small></p><div className="qr-demo" role="img" aria-label="쿠폰 사용 QR 코드"><i /><b /><em /><small>02:59</small></div><strong>CD-1024-0718</strong><small>QR 코드는 3분 동안 유효해요.</small></div><button className="primary" onClick={completeUse}>직원 확인 완료</button></Modal>}</div>;
 }
