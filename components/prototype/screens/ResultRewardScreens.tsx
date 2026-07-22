@@ -1,15 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useDemo } from "../DemoProvider";
 import { Modal, Progress, StateGate, Tag } from "../ui";
 
 export function ResultScreen() {
   const router = useRouter();
-  const { state, update, notify } = useDemo();
+  const { state } = useDemo();
   return (
-    <div className="result-screen"><div className="confetti" aria-hidden="true">✦ · ✧ · ✦ · ✧</div><div className="result-emblem">🏆</div><p className="eyebrow">MISSION COMPLETE</p><h1>사라진 총장의<br />열쇠를 찾았어요!</h1><p>팀과 함께 모든 미션을 해결했습니다.</p><div className="result-stats"><div><small>소요시간</small><b>47:38</b></div><div><small>사용 힌트</small><b>1개</b></div><div><small>팀 순위</small><b>상위 18%</b></div></div><section className="xp-card"><div><span>Lv.{state.level}</span><p><small>레벨 업!</small><b>＋440 XP</b></p></div><Progress value={state.xp} max={1600} /></section><div className="team-photo"><span>🐈</span><span>🐻</span><span>🫘</span><span>🧭</span><p>금요일 열쇠 원정대</p></div><div className="result-actions"><button className="primary" onClick={() => router.push("/rewards/cafe10")}>10% 할인 쿠폰 확인</button><button className="secondary" onClick={() => { update({ friends: [...new Set([...state.friends, "미로냥", "사진곰", "카페콩"])] }); notify("팀원들에게 친구 요청을 보냈어요"); }}>팀원 친구 추가</button><button className="text-button" onClick={() => router.push("/home")}>홈으로</button></div></div>
+    <div className="result-screen"><div className="confetti" aria-hidden="true">✦ · ✧ · ✦ · ✧</div><div className="result-emblem">🏆</div><p className="eyebrow">MISSION COMPLETE</p><h1>사라진 총장의<br />열쇠를 찾았어요!</h1><p>팀과 함께 모든 미션을 해결했습니다.</p><div className="result-stats"><div><small>소요시간</small><b>47:38</b></div><div><small>사용 힌트</small><b>1개</b></div><div><small>팀 순위</small><b>상위 18%</b></div></div><section className="xp-card"><div><span>Lv.{state.level}</span><p><small>레벨 업!</small><b>＋440 XP</b></p></div><Progress value={state.xp} max={1600} /></section><div className="team-photo"><span>🐈</span><span>🐻</span><span>🫘</span><span>🧭</span><p>금요일 열쇠 원정대</p></div><div className="result-actions"><button className="primary" onClick={() => router.push("/rewards/cafe10")}>10% 할인 쿠폰 확인</button><button className="secondary" onClick={() => router.push("/friends/scan")}>팀원 QR로 친구 추가</button><button className="text-button" onClick={() => router.push("/home")}>홈으로</button></div></div>
   );
 }
 

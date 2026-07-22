@@ -14,6 +14,7 @@ import { GameReadyScreen, LocationMissionScreen } from "./screens/GameStartLocat
 import { ArMissionScreen, QuizMissionScreen, TeamClueScreen } from "./screens/GameArClueQuiz";
 import { ResultScreen, RewardDetailScreen, RewardListScreen } from "./screens/ResultRewardScreens";
 import { FriendListScreen, FriendRequestsScreen } from "./screens/FriendScreens";
+import { FriendQrScanScreen } from "./screens/FriendQrScanScreen";
 import { CompletedThemesScreen, LevelScreen, LicenseScreen, MyScreen } from "./screens/MyScreens";
 import { ReportScreen, SettingsScreen } from "./screens/SettingsReportScreens";
 
@@ -48,6 +49,7 @@ export function PrototypeRouter() {
   else if (path.startsWith("/rewards/")) screen = <RewardDetailScreen />;
   else if (path === "/friends") screen = <FriendListScreen />;
   else if (path === "/friends/requests") screen = <FriendRequestsScreen />;
+  else if (path === "/friends/scan") screen = <FriendQrScanScreen />;
   else if (path === "/my") screen = <MyScreen />;
   else if (path === "/my/completed") screen = <CompletedThemesScreen />;
   else if (path === "/my/level") screen = <LevelScreen />;

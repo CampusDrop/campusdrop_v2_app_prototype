@@ -11,6 +11,7 @@ const titleByPath: Record<string, string> = {
   "/expeditions/new": "탐험대 만들기",
   "/friends": "친구",
   "/friends/requests": "친구 요청",
+  "/friends/scan": "QR로 친구 추가",
   "/my": "MY",
   "/my/completed": "완료한 테마",
   "/my/level": "레벨·경험치",
