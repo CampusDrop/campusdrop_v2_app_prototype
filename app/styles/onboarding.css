@@ -22,8 +22,16 @@
 .intro-screen h1 { margin: .4rem 0; }
 .auth-screen { justify-content: center; text-align: center; }
 .auth-screen .auth-logo { align-self: center; margin-bottom: .5rem; }
-.social-button { margin-top: 1.5rem; }
-.auth-screen > .secondary { width: 100%; }
+.provider-list { display: grid; gap: .6rem; margin-top: .8rem; }
+.provider-button { align-items: center; border: 1px solid var(--color-border); border-radius: var(--radius-md); display: grid; gap: .7rem; grid-template-columns: 2rem 1fr 2rem; min-height: 3.35rem; padding: .7rem; width: 100%; }
+.provider-button::after { content: "›"; font-size: 1.3rem; }
+.provider-button span { font-size: 1.15rem; font-weight: 700; }
+.provider-button.kakao { background: #fee500; color: #191600; }
+.provider-button.google { background: white; }
+.provider-button.google span { color: #4285f4; }
+.provider-button.apple { background: #161514; color: white; }
+.auth-requirement { background: var(--color-surface-soft); border-radius: var(--radius-md); display: grid; gap: .2rem; padding: .8rem; text-align: left; }
+.auth-requirement p { color: var(--color-text-muted); font-size: .72rem; }
 .divider { align-items: center; color: var(--color-text-muted); display: flex; font-size: .75rem; gap: .7rem; }
 .divider::before, .divider::after { background: var(--color-border); content: ""; height: 1px; width: 100%; }
 .legal { color: var(--color-text-muted); font-size: .7rem; padding: .75rem; }
@@ -45,12 +53,25 @@
 .segmented button { background: transparent; border-radius: .8rem; font-size: .75rem; padding: .7rem .25rem; }
 .segmented button[data-selected="true"] { background: white; box-shadow: var(--shadow-sm); font-weight: 700; }
 fieldset > small { color: var(--color-text-muted); }
-.interest-cloud { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .5rem; }
-.interest-cloud button { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-pill); padding: .65rem .85rem; }
-.interest-cloud button[data-selected="true"] { background: var(--color-ink-900); color: white; }
+.preference-screen { gap: 1rem; padding-bottom: 1rem; }
+.preference-intro { display: grid; gap: .4rem; }
+.preference-intro h1 { font-size: 1.65rem; }
+.preference-grid { display: grid; gap: .55rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.preference-grid button { aspect-ratio: 1; background: var(--color-surface); border: 2px solid transparent; border-radius: var(--radius-md); overflow: hidden; padding: 0; position: relative; }
+.preference-grid img { height: 100%; object-fit: cover; transition: transform var(--duration-normal); width: 100%; }
+.preference-grid button::after { background: linear-gradient(transparent 35%, rgb(20 16 14 / 82%)); content: ""; inset: 0; position: absolute; }
+.preference-grid button > span { bottom: .45rem; color: white; font-size: .72rem; font-weight: 700; left: .45rem; line-height: 1.1; position: absolute; right: .35rem; text-align: left; z-index: 1; }
+.preference-grid button > i { align-items: center; background: var(--color-brand-500); border: 2px solid white; border-radius: 50%; color: white; display: none; font-size: .65rem; height: 1.35rem; justify-content: center; position: absolute; right: .35rem; top: .35rem; width: 1.35rem; z-index: 2; }
+.preference-grid button[data-selected="true"] { border-color: var(--color-brand-500); box-shadow: 0 0 0 2px var(--color-brand-100); }
+.preference-grid button[data-selected="true"] img { transform: scale(1.07); }
+.preference-grid button[data-selected="true"] > i { display: flex; }
+.preference-footer { background: var(--color-canvas); bottom: -.05rem; display: grid; gap: .45rem; padding-top: .35rem; position: sticky; z-index: 4; }
+.preference-footer .primary { width: 100%; }
 .selection-count { color: var(--color-brand-600); font-size: .8rem; font-weight: 700; text-align: center; }
 .license-issued { align-items: center; display: flex; flex-direction: column; gap: 1.25rem; height: 100%; justify-content: center; padding: 1.5rem; text-align: center; }
 .license-card { background: linear-gradient(135deg, var(--color-ink-900), #5b4540); border-radius: var(--radius-lg); color: white; display: grid; gap: .3rem; padding: 1.4rem; text-align: left; transform: rotate(-3deg); width: 100%; }
 .license-card > span { color: var(--color-yellow-300); font-size: 2.5rem; }
 .license-card > small { letter-spacing: .08em; }
 .license-issued > .primary { width: 100%; }
+.license-issued > p { color: var(--color-text-muted); font-size: .8rem; }
+@media (min-width: 400px) { .preference-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }

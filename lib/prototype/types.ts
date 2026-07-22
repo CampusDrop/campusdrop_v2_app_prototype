@@ -1,6 +1,7 @@
 export type Language = "ko" | "en" | "zh" | "ja";
 export type DemoView = "normal" | "loading" | "empty" | "error" | "offline" | "denied";
 export type CouponStatus = "available" | "used" | "expired";
+export type AuthProvider = "kakao" | "google" | "apple";
 
 export type Theme = {
   id: string;
@@ -31,10 +32,13 @@ export type Expedition = {
 export type DemoState = {
   hydrated: boolean;
   onboarded: boolean;
+  authProvider: AuthProvider | null;
   verified: boolean;
+  profileReady: boolean;
   language: Language;
   nickname: string;
   interests: string[];
+  hobbies: string[];
   license: boolean;
   joined: boolean;
   checkedIn: boolean;

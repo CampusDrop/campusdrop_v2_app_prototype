@@ -3,7 +3,7 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-  root: fileURLToPath(new URL("./pages", import.meta.url)),
+  root: fileURLToPath(new URL("./github-pages", import.meta.url)),
   base: "/campusdrop_v2_app_prototype/",
   publicDir: fileURLToPath(new URL("./public", import.meta.url)),
   plugins: [react()],

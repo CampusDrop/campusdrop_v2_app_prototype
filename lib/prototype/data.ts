@@ -80,6 +80,34 @@ export const teamMembers = [
   { name: "카페콩", avatar: "🫘", completed: 2, interest: "카페" },
 ];
 
-export const interestOptions = [
-  "음식·카페", "게임", "영화·드라마", "음악", "운동", "여행", "사진", "독서", "언어교환", "공부·진로",
+export type PreferenceOption = { id: string; label: string; image: string };
+
+export const interestOptions: PreferenceOption[] = [
+  { id: "cafe", label: "맛집·카페", image: "/onboarding/cafe.webp" },
+  { id: "game", label: "게임", image: "/onboarding/game.webp" },
+  { id: "movie", label: "영화·드라마", image: "/onboarding/movie.webp" },
+  { id: "music", label: "음악", image: "/onboarding/music.webp" },
+  { id: "sports", label: "스포츠", image: "/onboarding/sports.webp" },
+  { id: "travel", label: "여행", image: "/onboarding/travel.webp" },
+  { id: "photo", label: "사진", image: "/onboarding/photo.webp" },
+  { id: "books", label: "독서", image: "/onboarding/books.webp" },
+  { id: "friends", label: "친구·모임", image: "/onboarding/friends.webp" },
+  { id: "study", label: "공부·진로", image: "/onboarding/study.webp" },
+  { id: "fashion", label: "패션", image: "/onboarding/fashion.webp" },
+  { id: "pet", label: "반려동물", image: "/onboarding/pet.webp" },
+];
+
+export const hobbyOptions: PreferenceOption[] = [
+  { id: "running", label: "러닝", image: "/onboarding/running.webp" },
+  { id: "hiking", label: "등산", image: "/onboarding/hiking.webp" },
+  { id: "cooking", label: "요리", image: "/onboarding/cooking.webp" },
+  { id: "baking", label: "베이킹", image: "/onboarding/baking.webp" },
+  { id: "drawing", label: "그림", image: "/onboarding/drawing.webp" },
+  { id: "dance", label: "댄스", image: "/onboarding/dance.webp" },
+  { id: "instrument", label: "악기", image: "/onboarding/instrument.webp" },
+  { id: "boardgame", label: "보드게임", image: "/onboarding/boardgame.webp" },
+  { id: "camping", label: "캠핑", image: "/onboarding/camping.webp" },
+  { id: "cycling", label: "자전거", image: "/onboarding/cycling.webp" },
+  { id: "plants", label: "식물 키우기", image: "/onboarding/plants.webp" },
+  { id: "craft", label: "공예", image: "/onboarding/craft.webp" },
 ];

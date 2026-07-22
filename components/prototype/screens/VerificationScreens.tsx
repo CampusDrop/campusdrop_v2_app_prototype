@@ -7,7 +7,7 @@ import { useDemo } from "../DemoProvider";
 export function VerificationChoiceScreen() {
   const router = useRouter();
   return (
-    <section className="onboarding-screen"><p className="step-label">학교 인증</p><h1>세종대 학생임을<br />확인해 주세요</h1><p className="muted">안전하고 신뢰할 수 있는 탐험대를 만들기 위해 학교 인증이 필요해요.</p><div className="verification-cards"><button onClick={() => router.push("/verification/email")}><span>✉️</span><div><b>학교 이메일로 인증</b><small>@sju.ac.kr 이메일 사용</small></div><i>›</i></button><button onClick={() => router.push("/verification/image")}><span>🪪</span><div><b>학생 인증 이미지 제출</b><small>학생증 또는 재학증명서</small></div><i>›</i></button></div><div className="notice-card">🔒 제출 이미지는 심사 후 즉시 삭제되며 프로토타입에서는 실제 업로드되지 않아요.</div></section>
+    <section className="onboarding-screen"><p className="step-label">필수 2 / 2 · 학교 인증</p><h1>세종대 학생임을<br />확인해 주세요</h1><p className="muted">계정 로그인과 학교 인증을 모두 마쳐야 앱에 입장할 수 있어요.</p><div className="verification-cards"><button onClick={() => router.push("/verification/email")}><span>✉️</span><div><b>학교 이메일로 인증</b><small>@sju.ac.kr 이메일 사용</small></div><i>›</i></button><button onClick={() => router.push("/verification/image")}><span>🪪</span><div><b>학생 인증 이미지 제출</b><small>학생증 또는 재학증명서</small></div><i>›</i></button></div><div className="notice-card">🔒 학교 인증을 건너뛸 수 없어요. 제출 이미지는 심사 후 즉시 삭제됩니다.</div></section>
   );
 }
 

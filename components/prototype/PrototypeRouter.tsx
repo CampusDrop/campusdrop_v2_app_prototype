@@ -1,10 +1,13 @@
 "use client";
 
+import { useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
+import type { DemoState } from "@/lib/prototype/types";
+import { useDemo } from "./DemoProvider";
 import { AppShell } from "./AppShell";
 import { SplashScreen, LanguageScreen, IntroScreen, AuthScreen } from "./screens/OnboardingStart";
 import { VerificationChoiceScreen, EmailVerificationScreen, ImageVerificationScreen } from "./screens/VerificationScreens";
-import { ProfileSetupScreen, InterestsScreen } from "./screens/ProfileSetupScreens";
+import { HobbiesScreen, ProfileSetupScreen, InterestsScreen } from "./screens/ProfileSetupScreens";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ThemeDetailScreen, ThemeListScreen } from "./screens/ThemeScreens";
 import { ExpeditionListScreen } from "./screens/ExpeditionListScreen";
@@ -20,6 +23,11 @@ import { ReportScreen, SettingsScreen } from "./screens/SettingsReportScreens";
 
 export function PrototypeRouter() {
   const path = usePathname();
+  const router = useRouter();
+  const { state } = useDemo();
+  const requiredRoute = getRequiredRoute(path, state);
+  useEffect(() => { if (requiredRoute) router.replace(requiredRoute); }, [requiredRoute, router]);
+  if (!state.hydrated || requiredRoute) return <AppShell><div className="center-screen"><div className="logo-orbit">D</div><p>입장 조건을 확인하는 중…</p></div></AppShell>;
   let screen = <NotFoundScreen />;
   if (path === "/") screen = <SplashScreen />;
   else if (path === "/onboarding/language") screen = <LanguageScreen />;
@@ -30,6 +38,7 @@ export function PrototypeRouter() {
   else if (path === "/verification/image") screen = <ImageVerificationScreen />;
   else if (path === "/profile/setup") screen = <ProfileSetupScreen />;
   else if (path === "/profile/interests") screen = <InterestsScreen />;
+  else if (path === "/profile/hobbies") screen = <HobbiesScreen />;
   else if (path === "/home") screen = <HomeScreen />;
   else if (path === "/themes") screen = <ThemeListScreen />;
   else if (path.startsWith("/themes/")) screen = <ThemeDetailScreen />;
@@ -57,6 +66,25 @@ export function PrototypeRouter() {
   else if (path === "/settings") screen = <SettingsScreen />;
   else if (path === "/report") screen = <ReportScreen />;
   return <AppShell>{screen}</AppShell>;
+}
+
+function getRequiredRoute(path: string, state: DemoState) {
+  if (!state.hydrated || path === "/" || path.startsWith("/onboarding") || path === "/auth") return null;
+  if (path.startsWith("/verification")) return state.authProvider ? null : "/auth";
+  if (path.startsWith("/profile")) {
+    if (!state.authProvider) return "/auth";
+    if (!state.verified) return "/verification";
+    if (path !== "/profile/setup" && !state.profileReady) return "/profile/setup";
+    if (path === "/profile/hobbies" && state.interests.length < 3) return "/profile/interests";
+    return null;
+  }
+  if (!state.authProvider) return "/auth";
+  if (!state.verified) return "/verification";
+  if (!state.profileReady) return "/profile/setup";
+  if (state.interests.length < 3) return "/profile/interests";
+  if (state.hobbies.length < 3) return "/profile/hobbies";
+  if (state.onboarded) return null;
+  return "/profile/hobbies";
 }
 
 function NotFoundScreen() {

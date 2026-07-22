@@ -25,7 +25,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const { state, toast } = useDemo();
-  const onboarding = pathname === "/" || pathname.startsWith("/onboarding") || pathname.startsWith("/auth") || pathname.startsWith("/verification") || pathname.startsWith("/profile/setup") || pathname.startsWith("/profile/interests");
+  const onboarding = pathname === "/" || pathname.startsWith("/onboarding") || pathname.startsWith("/auth") || pathname.startsWith("/verification") || pathname.startsWith("/profile/");
   const game = pathname.startsWith("/play/");
   const topTabs = ["/home", "/themes", "/expeditions", "/friends", "/my"];
   const title = titleByPath[pathname] ?? (pathname.includes("/chat") ? "임시 채팅방" : pathname.includes("/meetup") ? "약속·체크인" : pathname.startsWith("/themes/") ? "테마 상세" : pathname.startsWith("/expeditions/") ? "탐험대 상세" : pathname.startsWith("/rewards/") ? "쿠폰 상세" : "CampusDrop");
