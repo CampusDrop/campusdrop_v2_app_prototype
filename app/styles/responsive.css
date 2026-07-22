@@ -1,0 +1,82 @@
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-aside {
+    max-width: 24rem;
+  }
+
+  .drop-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 620px) {
+  .site-header,
+  .page-content {
+    width: calc(100% - 1.5rem);
+  }
+
+  .site-header {
+    padding-block: var(--space-4);
+  }
+
+  .hero {
+    border-radius: var(--radius-lg);
+    gap: var(--space-6);
+    padding: var(--space-8) var(--space-5);
+  }
+
+  .hero-description {
+    font-size: var(--text-md);
+  }
+
+  .hero-aside,
+  .icon-button {
+    display: none;
+  }
+
+  .search-box {
+    border-radius: var(--radius-md);
+    flex-wrap: wrap;
+    padding: var(--space-3);
+  }
+
+  .search-button {
+    width: 100%;
+  }
+
+  .discover-section {
+    padding-top: var(--space-8);
+  }
+
+  .section-heading {
+    align-items: start;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+
+  .drop-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-visual {
+    height: 9.5rem;
+  }
+
+  .bottom-nav {
+    bottom: var(--space-3);
+    max-width: calc(100% - 1.5rem);
+    width: max-content;
+  }
+
+  .nav-label {
+    display: none;
+  }
+
+  .nav-button {
+    justify-content: center;
+    min-width: 3rem;
+  }
+}
