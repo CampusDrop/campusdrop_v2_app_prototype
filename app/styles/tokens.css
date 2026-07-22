@@ -1,9 +1,17 @@
 @font-face {
-  font-family: "Lasthighteen";
+  font-family: "Byeolbichhaneul";
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src: url("/fonts/lasthighteen-bold.ttf") format("truetype");
+  src: url("/fonts/byeolbichhaneul-bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Byeolbichhaneul";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("/fonts/byeolbichhaneul-light.ttf") format("truetype");
 }
 
 :root {
@@ -36,9 +44,9 @@
   --color-focus: #2c6bed;
 
   /* Typography */
-  --font-sans: Pretendard, "Apple SD Gothic Neo", "Noto Sans KR", system-ui,
-    sans-serif;
-  --font-display: "Lasthighteen", var(--font-sans);
+  --font-sans: "Byeolbichhaneul", Pretendard, "Apple SD Gothic Neo",
+    "Noto Sans KR", system-ui, sans-serif;
+  --font-display: var(--font-sans);
   --text-xs: 0.75rem;
   --text-sm: 0.875rem;
   --text-md: 1rem;
