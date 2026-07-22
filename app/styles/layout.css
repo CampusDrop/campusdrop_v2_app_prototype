@@ -8,7 +8,7 @@
 .app-header > :last-child { justify-self: end; }
 .mini-brand { font-size: 1.2rem; font-weight: 700; letter-spacing: -.04em; }
 .round-button { align-items: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 50%; display: flex; font-size: 1.5rem; height: 2.35rem; justify-content: center; width: 2.35rem; }
-.tab-bar { align-items: center; background: rgb(255 255 255 / 94%); border-top: 1px solid var(--color-border); bottom: 0; display: grid; grid-template-columns: repeat(5, 1fr); height: 5.2rem; padding: .45rem .35rem .8rem; position: absolute; width: 100%; z-index: 15; }
+.tab-bar { align-items: center; background: rgb(255 255 255 / 94%); border-top: 1px solid var(--color-border); bottom: 0; display: grid; grid-template-columns: repeat(5, 1fr); height: var(--size-tab-bar); padding: .45rem .35rem .8rem; position: absolute; width: 100%; z-index: 15; }
 .tab-bar button { align-items: center; background: transparent; color: var(--color-text-muted); display: flex; flex-direction: column; gap: .18rem; }
 .tab-bar button > span { font-size: 1.25rem; line-height: 1; }
 .tab-bar button small { font-size: .63rem; }
@@ -23,6 +23,8 @@
 .center-screen > p { color: var(--color-text-muted); }
 .center-screen > .primary { margin-top: 1rem; min-width: 12rem; }
 .sticky-actions { background: rgb(255 248 241 / 94%); bottom: 0; display: grid; gap: .6rem; grid-template-columns: 1fr 1.35fr; padding: .8rem 1rem 1.2rem; position: absolute; width: 100%; z-index: 8; }
+.app-frame:not(.game-mode) .sticky-actions { bottom: var(--size-tab-bar); }
+.app-frame:not(.game-mode) :is(.detail-screen, .coupon-detail) { padding-bottom: calc(6.5rem + var(--size-tab-bar)); }
 .sticky-actions.single { grid-template-columns: 1fr; }
 .sticky-actions.vertical { grid-template-columns: 1fr; }
 .prototype-toast { background: var(--color-ink-900); border-radius: var(--radius-pill); bottom: 6rem; color: white; font-size: .8rem; left: 50%; padding: .65rem 1rem; position: absolute; transform: translateX(-50%); white-space: nowrap; z-index: 30; }

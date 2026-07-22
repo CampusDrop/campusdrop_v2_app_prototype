@@ -72,6 +72,9 @@
   --space-12: 3rem;
   --space-16: 4rem;
 
+  /* Layout */
+  --size-tab-bar: 5.2rem;
+
   /* Shape, depth, motion */
   --radius-sm: 0.75rem;
   --radius-md: 1.125rem;
