@@ -22,6 +22,7 @@ export default defineConfig(({ mode }) => {
     resolve: {
       alias: {
         "@": projectRoot,
+        "next/image": fileURLToPath(new URL("./components/prototype/pagesImage.tsx", import.meta.url)),
         "next/navigation": fileURLToPath(new URL("./components/prototype/pagesNavigation.ts", import.meta.url)),
       },
     },

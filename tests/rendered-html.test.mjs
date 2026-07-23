@@ -59,12 +59,13 @@ test("keeps the production app and client-only state wiring in place", async () 
 });
 
 test("wires the daily artifact hunt without revealing its ending condition", async () => {
-  const [router, artifacts, dailyScreens, kakaoMap, pagesConfig, pagesWorkflow, resultScreen] = await Promise.all([
+  const [router, artifacts, dailyScreens, kakaoMap, pagesConfig, pagesImage, pagesWorkflow, resultScreen] = await Promise.all([
     readFile(new URL("../components/prototype/PrototypeRouter.tsx", import.meta.url), "utf8"),
     readFile(new URL("../lib/prototype/artifacts.ts", import.meta.url), "utf8"),
     readFile(new URL("../components/prototype/screens/DailyArtifactScreens.tsx", import.meta.url), "utf8"),
     readFile(new URL("../components/prototype/KakaoExpeditionMap.tsx", import.meta.url), "utf8"),
     readFile(new URL("../vite.pages.config.ts", import.meta.url), "utf8"),
+    readFile(new URL("../components/prototype/pagesImage.tsx", import.meta.url), "utf8"),
     readFile(new URL("../.github/workflows/deploy-pages.yml", import.meta.url), "utf8"),
     readFile(new URL("../components/prototype/screens/ResultRewardScreens.tsx", import.meta.url), "utf8"),
   ]);
@@ -87,6 +88,8 @@ test("wires the daily artifact hunt without revealing its ending condition", asy
   assert.match(kakaoMap, /dapi\.kakao\.com\/v2\/maps\/sdk\.js/);
   assert.match(kakaoMap, /navigator\.geolocation\.getCurrentPosition/);
   assert.match(pagesConfig, /process\.env\.NEXT_PUBLIC_KAKAO_MAP_APP_KEY/);
+  assert.match(pagesConfig, /"next\/image"/);
+  assert.match(pagesImage, /<img/);
   assert.match(pagesWorkflow, /secrets\.KAKAO_MAP_JAVASCRIPT_KEY/);
   assert.match(resultScreen, /state\.mainThemeRuns >= 2 && hasRestorationArtifact/);
   assert.match(resultScreen, /열리지 않았던 문/);
