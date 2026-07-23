@@ -15,33 +15,70 @@
 }
 
 :root {
-  /* Brand palette */
-  --color-brand-50: #fff8f1;
-  --color-brand-100: #ffe7d6;
-  --color-brand-200: #ffd0b4;
-  --color-brand-400: #ff8a68;
-  --color-brand-500: #ff6846;
-  --color-brand-600: #e95032;
-  --color-brand-700: #b93b25;
-  --color-orange-400: #ff9c42;
-  --color-mint-400: #6bc7aa;
-  --color-yellow-300: #ffd868;
-  --color-white: #ffffff;
-  --color-ink-900: #292321;
-  --color-ink-700: #514945;
-  --color-ink-500: #7c716c;
-  --color-line: #eaded6;
+  /*
+   * Foundation palette
+   * Components should prefer the semantic tokens below.
+   */
+  --color-brand-50: #fff9ec;
+  --color-brand-100: #fff3d9;
+  --color-brand-200: #eedbb0;
+  --color-brand-400: #b59b63;
+  --color-brand-500: #8c743e;
+  --color-brand-600: #78602f;
+  --color-brand-700: #614b22;
+
+  --color-neutral-0: #ffffff;
+  --color-neutral-50: #fffdf8;
+  --color-neutral-300: #ddd3be;
+  --color-neutral-500: #a59b88;
+  --color-neutral-700: #6b6252;
+  --color-neutral-900: #2f281c;
+
+  --color-danger-100: #fbeae7;
+  --color-danger-500: #c84b40;
+  --color-danger-700: #9f352d;
+  --color-success-100: #e8f2ea;
+  --color-success-500: #4f7b62;
+  --color-accent-100: #e4f0f0;
+  --color-accent-500: #467278;
 
   /* Semantic colors */
-  --color-canvas: var(--color-brand-50);
-  --color-surface: var(--color-white);
-  --color-surface-soft: #fff1e7;
-  --color-text: var(--color-ink-900);
-  --color-text-muted: var(--color-ink-500);
-  --color-border: var(--color-line);
-  --color-action: var(--color-brand-500);
-  --color-action-hover: var(--color-brand-600);
-  --color-focus: #2c6bed;
+  --color-canvas: var(--color-neutral-50);
+  --color-surface: var(--color-neutral-0);
+  --color-surface-soft: var(--color-brand-100);
+  --color-surface-selected: var(--color-brand-200);
+  --color-surface-dark: var(--color-neutral-900);
+  --color-text: var(--color-neutral-900);
+  --color-text-muted: var(--color-neutral-700);
+  --color-text-disabled: var(--color-neutral-500);
+  --color-text-on-brand: var(--color-neutral-0);
+  --color-text-on-dark: var(--color-neutral-50);
+  --color-text-on-dark-muted: #cfc6b5;
+  --color-border: var(--color-neutral-300);
+  --color-border-strong: #b8a987;
+  --color-action: var(--color-brand-600);
+  --color-action-hover: var(--color-brand-700);
+  --color-action-soft: var(--color-brand-100);
+  --color-danger: var(--color-danger-500);
+  --color-danger-strong: var(--color-danger-700);
+  --color-danger-soft: var(--color-danger-100);
+  --color-danger-on-dark: #ff9b8f;
+  --color-success: var(--color-success-500);
+  --color-success-soft: var(--color-success-100);
+  --color-accent-special: var(--color-accent-500);
+  --color-accent-special-soft: var(--color-accent-100);
+  --color-highlight: var(--color-brand-200);
+  --color-focus: var(--color-accent-special);
+
+  /* Compatibility aliases for existing prototype components */
+  --color-white: var(--color-neutral-0);
+  --color-ink-900: var(--color-neutral-900);
+  --color-ink-700: var(--color-neutral-700);
+  --color-ink-500: var(--color-neutral-500);
+  --color-line: var(--color-neutral-300);
+  --color-orange-400: var(--color-brand-400);
+  --color-mint-400: var(--color-success);
+  --color-yellow-300: var(--color-highlight);
 
   /* Typography */
   --font-sans: "Byeolbichhaneul", Pretendard, "Apple SD Gothic Neo",
@@ -80,9 +117,10 @@
   --radius-md: 1.125rem;
   --radius-lg: 1.75rem;
   --radius-pill: 999px;
-  --shadow-sm: 0 8px 24px rgb(84 54 39 / 7%);
-  --shadow-md: 0 18px 46px rgb(84 54 39 / 12%);
-  --shadow-nav: 0 12px 36px rgb(72 43 28 / 16%);
+  --shadow-sm: 0 8px 24px rgb(80 64 30 / 8%);
+  --shadow-md: 0 18px 46px rgb(80 64 30 / 13%);
+  --shadow-nav: 0 12px 36px rgb(64 49 23 / 17%);
+  --shadow-action: 0 8px 20px rgb(120 96 47 / 24%);
   --duration-fast: 160ms;
   --duration-normal: 240ms;
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
