@@ -57,3 +57,21 @@ test("keeps the production app and client-only state wiring in place", async () 
   assert.deepEqual(await readdir(previewRoot), []);
   await assert.rejects(access(new URL("public/_sites-preview", templateRoot)));
 });
+
+test("wires the daily artifact hunt without revealing its ending condition", async () => {
+  const [router, artifacts, dailyScreens, resultScreen] = await Promise.all([
+    readFile(new URL("../components/prototype/PrototypeRouter.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../lib/prototype/artifacts.ts", import.meta.url), "utf8"),
+    readFile(new URL("../components/prototype/screens/DailyArtifactScreens.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/prototype/screens/ResultRewardScreens.tsx", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(router, /path === "\/daily"/);
+  assert.match(router, /path === "\/daily\/hunt"/);
+  assert.match(router, /path === "\/daily\/quiz"/);
+  assert.match(router, /path === "\/daily\/result"/);
+  assert.equal((artifacts.match(/rarity: "(?:일반|고급|희귀|영웅|전설)"/g) ?? []).length, 5);
+  assert.doesNotMatch(dailyScreens, /엔딩|ending/i);
+  assert.match(resultScreen, /state\.mainThemeRuns >= 2 && hasMonthlyArtifact/);
+  assert.match(resultScreen, /열리지 않았던 문/);
+});

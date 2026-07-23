@@ -25,6 +25,10 @@ const initialState: DemoState = {
   friends: ["캠퍼스루키"],
   reviews: [],
   communityPosts: [],
+  artifactIds: [],
+  dailyCompletedDate: null,
+  dailyStreak: 0,
+  mainThemeRuns: 0,
   demoView: "normal",
 };
 
@@ -102,8 +106,17 @@ export function DemoProvider({ children }: { children: ReactNode }) {
   }
 
   function completeGame() {
-    if (state.completed) return;
-    update({ completed: true, level: 4, xp: 80, coupon: "available" });
+    const previousRuns = state.mainThemeRuns || (state.completed ? 1 : 0);
+    if (previousRuns === 0) {
+      update({ completed: true, mainThemeRuns: 1, level: 4, xp: 80, coupon: "available" });
+      return;
+    }
+    update({
+      completed: true,
+      mainThemeRuns: previousRuns + 1,
+      xp: Math.min(1600, state.xp + 120),
+      coupon: "available",
+    });
   }
 
   return (

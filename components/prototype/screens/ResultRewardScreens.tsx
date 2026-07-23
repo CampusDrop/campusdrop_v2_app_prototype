@@ -2,14 +2,29 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { hiddenArtifacts } from "@/lib/prototype/artifacts";
 import { useDemo } from "../DemoProvider";
 import { Modal, Progress, StateGate, Tag } from "../ui";
 
 export function ResultScreen() {
   const router = useRouter();
   const { state } = useDemo();
+  const hasMonthlyArtifact = hiddenArtifacts.some((artifact) => artifact.themeId === "missing-key" && state.artifactIds.includes(artifact.id));
+  const changedEnding = state.mainThemeRuns >= 2 && hasMonthlyArtifact;
+  const replay = state.mainThemeRuns >= 2;
   return (
-    <div className="result-screen"><div className="confetti" aria-hidden="true">✦ · ✧ · ✦ · ✧</div><div className="result-emblem">🏆</div><p className="eyebrow">MISSION COMPLETE</p><h1>사라진 총장의<br />열쇠를 찾았어요!</h1><p>팀과 함께 모든 미션을 해결했습니다.</p><div className="result-stats"><div><small>소요시간</small><b>47:38</b></div><div><small>사용 힌트</small><b>1개</b></div><div><small>팀 순위</small><b>상위 18%</b></div></div><section className="xp-card"><div><span>Lv.{state.level}</span><p><small>레벨 업!</small><b>＋440 XP</b></p></div><Progress value={state.xp} max={1600} /></section><div className="team-photo"><span>🐈</span><span>🐻</span><span>🫘</span><span>🧭</span><p>금요일 열쇠 원정대</p></div><div className="result-actions"><button className="primary" onClick={() => router.push("/rewards/cafe10")}>10% 할인 쿠폰 확인</button><button className="secondary" onClick={() => router.push("/themes/missing-key/reviews/new")}>방탈출 리뷰 남기기</button><button className="secondary" onClick={() => router.push("/community/themes/missing-key")}>완료자 비밀방 입장</button><button className="text-button" onClick={() => router.push("/friends/scan")}>팀원 QR로 친구 추가</button><button className="text-button" onClick={() => router.push("/home")}>홈으로</button></div></div>
+    <div className={`result-screen ${changedEnding ? "changed-ending" : ""}`}>
+      <div className="confetti" aria-hidden="true">✦ · ✧ · ✦ · ✧</div>
+      <div className="result-emblem">{changedEnding ? "🗝️" : "🏆"}</div>
+      <p className="eyebrow">MISSION COMPLETE</p>
+      <h1>사라진 총장의<br />열쇠를 찾았어요!</h1>
+      <p>{changedEnding ? "문이 닫히기 직전, 처음에는 없던 희미한 빛이 복도 끝에서 번졌습니다." : "팀과 함께 모든 미션을 해결했습니다."}</p>
+      {changedEnding && <section className="ending-epilogue"><small>EPILOGUE</small><b>열리지 않았던 문</b><p>총장실 책장 뒤에서 작은 문 하나가 모습을 드러냈어요. 안쪽에는 누군가 다음 탐사원을 기다린 듯, 오래된 기록 한 장이 놓여 있었습니다.</p><i>“열쇠는 하나가 아니었다.”</i></section>}
+      <div className="result-stats"><div><small>소요시간</small><b>47:38</b></div><div><small>사용 힌트</small><b>1개</b></div><div><small>팀 순위</small><b>상위 18%</b></div></div>
+      <section className="xp-card"><div><span>Lv.{state.level}</span><p><small>{replay ? "재탐사 완료" : "레벨 업!"}</small><b>＋{replay ? 120 : 440} XP</b></p></div><Progress value={state.xp} max={1600} /></section>
+      <div className="team-photo"><span>🐈</span><span>🐻</span><span>🫘</span><span>🧭</span><p>금요일 열쇠 원정대</p></div>
+      <div className="result-actions"><button className="primary" onClick={() => router.push("/rewards/cafe10")}>10% 할인 쿠폰 확인</button><button className="secondary" onClick={() => router.push("/themes/missing-key/reviews/new")}>방탈출 리뷰 남기기</button><button className="secondary" onClick={() => router.push("/community/themes/missing-key")}>완료자 비밀방 입장</button><button className="text-button" onClick={() => router.push("/friends/scan")}>팀원 QR로 친구 추가</button><button className="text-button" onClick={() => router.push("/home")}>홈으로</button></div>
+    </div>
   );
 }
 

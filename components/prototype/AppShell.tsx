@@ -18,7 +18,12 @@ const titleByPath: Record<string, string> = {
   "/my/completed": "완료한 테마",
   "/my/level": "레벨·경험치",
   "/my/license": "탐사 라이선스",
+  "/my/artifacts": "숨은 유물 도감",
   "/rewards": "쿠폰",
+  "/daily": "오늘의 탐사",
+  "/daily/hunt": "흔적 추적",
+  "/daily/quiz": "현장 퀴즈",
+  "/daily/result": "발견한 유물",
   "/settings": "설정",
   "/report": "신고·차단",
 };

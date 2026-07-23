@@ -2,6 +2,16 @@ export type Language = "ko" | "en" | "zh" | "ja";
 export type DemoView = "normal" | "loading" | "empty" | "error" | "offline" | "denied";
 export type CouponStatus = "available" | "used" | "expired";
 export type AuthProvider = "kakao" | "google" | "apple";
+export type ArtifactRarity = "일반" | "고급" | "희귀" | "영웅" | "전설";
+
+export type HiddenArtifact = {
+  id: string;
+  themeId: string;
+  name: string;
+  emoji: string;
+  rarity: ArtifactRarity;
+  lore: string;
+};
 
 export type ThemeReview = {
   id: string;
@@ -69,5 +79,9 @@ export type DemoState = {
   friends: string[];
   reviews: ThemeReview[];
   communityPosts: CommunityPost[];
+  artifactIds: string[];
+  dailyCompletedDate: string | null;
+  dailyStreak: number;
+  mainThemeRuns: number;
   demoView: DemoView;
 };
