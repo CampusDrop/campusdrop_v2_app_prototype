@@ -28,6 +28,9 @@
 .theme-copy > div { display: flex; gap: .35rem; }
 .theme-copy > p, .theme-copy > small { color: var(--color-text-muted); }
 .theme-copy > p { font-size: .8rem; }
+.theme-copy > .theme-rating { align-items: center; color: var(--color-text-muted); font-size: .72rem; gap: .45rem; }
+.theme-rating > b { color: var(--color-brand-600); font-size: .8rem; }
+.theme-rating > span { border-left: 1px solid var(--color-border); padding-left: .45rem; }
 .expedition-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm); display: grid; gap: .55rem; padding: 1rem; text-align: left; width: 100%; }
 .expedition-top { align-items: center; display: flex; justify-content: space-between; }
 .expedition-top > small, .expedition-card > p { color: var(--color-text-muted); font-size: .75rem; }
