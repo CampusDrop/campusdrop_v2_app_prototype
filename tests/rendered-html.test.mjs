@@ -57,3 +57,37 @@ test("keeps the production app and client-only state wiring in place", async () 
   assert.deepEqual(await readdir(previewRoot), []);
   await assert.rejects(access(new URL("public/_sites-preview", templateRoot)));
 });
+
+test("wires the daily artifact hunt without revealing its ending condition", async () => {
+  const [router, artifacts, dailyScreens, kakaoMap, pagesConfig, pagesWorkflow, resultScreen] = await Promise.all([
+    readFile(new URL("../components/prototype/PrototypeRouter.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../lib/prototype/artifacts.ts", import.meta.url), "utf8"),
+    readFile(new URL("../components/prototype/screens/DailyArtifactScreens.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../components/prototype/KakaoExpeditionMap.tsx", import.meta.url), "utf8"),
+    readFile(new URL("../vite.pages.config.ts", import.meta.url), "utf8"),
+    readFile(new URL("../.github/workflows/deploy-pages.yml", import.meta.url), "utf8"),
+    readFile(new URL("../components/prototype/screens/ResultRewardScreens.tsx", import.meta.url), "utf8"),
+  ]);
+
+  assert.match(router, /path === "\/daily"/);
+  assert.match(router, /path === "\/daily\/hunt"/);
+  assert.match(router, /path === "\/daily\/quiz"/);
+  assert.match(router, /path === "\/daily\/result"/);
+  assert.match(router, /path === "\/expeditions"\) screen = <DailyArtifactHomeScreen/);
+  assert.match(router, /path === "\/expeditions\/teams"\) screen = <ExpeditionListScreen/);
+  assert.equal((artifacts.match(/rarity: "(?:일반|고급|희귀|영웅|전설)"/g) ?? []).length, 15);
+  assert.equal((artifacts.match(/monthLabel: "[567]월"/g) ?? []).length, 3);
+  assert.match(artifacts, /DAILY_CHEST_LIMIT = 3/);
+  assert.match(artifacts, /RESTORATION_ARTIFACT_DROP_RATE = 0\.06/);
+  assert.match(artifacts, /ownsEveryRegularArtifact \|\| canRollRestorationArtifact/);
+  assert.match(dailyScreens, /오늘의 상자/);
+  assert.match(dailyScreens, /보물상자는 더 이상 출현하지 않습니다/);
+  assert.doesNotMatch(dailyScreens, /엔딩|ending/i);
+  assert.match(kakaoMap, /NEXT_PUBLIC_KAKAO_MAP_APP_KEY/);
+  assert.match(kakaoMap, /dapi\.kakao\.com\/v2\/maps\/sdk\.js/);
+  assert.match(kakaoMap, /navigator\.geolocation\.getCurrentPosition/);
+  assert.match(pagesConfig, /process\.env\.NEXT_PUBLIC_KAKAO_MAP_APP_KEY/);
+  assert.match(pagesWorkflow, /secrets\.KAKAO_MAP_JAVASCRIPT_KEY/);
+  assert.match(resultScreen, /state\.mainThemeRuns >= 2 && hasRestorationArtifact/);
+  assert.match(resultScreen, /열리지 않았던 문/);
+});

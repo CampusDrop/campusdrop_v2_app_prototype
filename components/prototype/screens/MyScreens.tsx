@@ -8,7 +8,7 @@ import { Modal, Progress, Tag } from "../ui";
 export function MyScreen() {
   const router = useRouter();
   const { state, notify } = useDemo();
-  const menus = [["✓", "완료한 테마", "/my/completed"], ["✦", "레벨·경험치", "/my/level"], ["🎟️", "쿠폰", "/rewards"], ["♧", "친구", "/friends"], ["▣", "탐사 라이선스", "/my/license"], ["⚙", "설정", "/settings"]];
+  const menus = [["✓", "완료한 테마", "/my/completed"], ["◆", "숨은 유물 도감", "/my/artifacts"], ["✦", "레벨·경험치", "/my/level"], ["🎟️", "쿠폰", "/rewards"], ["♧", "친구", "/friends"], ["▣", "탐사 라이선스", "/my/license"], ["⚙", "설정", "/settings"]];
   return <div className="screen my-screen"><section className="profile-hero"><span>🧭</span><div><Tag tone="mint">✓ 세종대학교 인증</Tag><h1>{state.nickname}</h1><p>카페 · 게임 · 사진 · 여행</p></div><button onClick={() => notify("프로필 편집은 다음 단계에서 연결됩니다")}>편집</button></section><section className="my-level-card" onClick={() => router.push("/my/level")}><div><b>Lv.{state.level} 캠퍼스 탐험가</b><small>{state.completed ? "다음 레벨까지 1,520 XP" : "다음 레벨까지 360 XP"}</small></div><Progress value={state.xp} max={1600} /></section><div className="profile-stats"><div><b>{state.completed ? 4 : 3}</b><small>완료 테마</small></div><div><b>{state.friends.length}</b><small>친구</small></div><div><b>{state.coupon === "available" ? 1 : 0}</b><small>쿠폰</small></div></div><div className="my-menu">{menus.map(([icon, label, path]) => <button key={path} onClick={() => router.push(path)}><span>{icon}</span><b>{label}</b><i>›</i></button>)}</div></div>;
 }
 

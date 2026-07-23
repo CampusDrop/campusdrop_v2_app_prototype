@@ -22,6 +22,7 @@ import { FriendListScreen, FriendRequestsScreen } from "./screens/FriendScreens"
 import { FriendQrScanScreen } from "./screens/FriendQrScanScreen";
 import { CompletedThemesScreen, LevelScreen, LicenseScreen, MyScreen } from "./screens/MyScreens";
 import { ReportScreen, SettingsScreen } from "./screens/SettingsReportScreens";
+import { ArtifactCollectionScreen, DailyArtifactHomeScreen, DailyArtifactHuntScreen, DailyArtifactQuizScreen, DailyArtifactResultScreen } from "./screens/DailyArtifactScreens";
 
 export function PrototypeRouter() {
   const path = usePathname();
@@ -42,6 +43,10 @@ export function PrototypeRouter() {
   else if (path === "/profile/interests") screen = <InterestsScreen />;
   else if (path === "/profile/hobbies") screen = <HobbiesScreen />;
   else if (path === "/home") screen = <HomeScreen />;
+  else if (path === "/daily") screen = <DailyArtifactHomeScreen />;
+  else if (path === "/daily/hunt") screen = <DailyArtifactHuntScreen />;
+  else if (path === "/daily/quiz") screen = <DailyArtifactQuizScreen />;
+  else if (path === "/daily/result") screen = <DailyArtifactResultScreen />;
   else if (path === "/themes") screen = <ThemeListScreen />;
   else if (/^\/themes\/[^/]+\/reviews\/new$/.test(path)) screen = <ReviewWriteScreen />;
   else if (/^\/themes\/[^/]+\/reviews$/.test(path)) screen = <ReviewListScreen />;
@@ -49,7 +54,8 @@ export function PrototypeRouter() {
   else if (path === "/community") screen = <CommunityHomeScreen />;
   else if (path === "/community/general") screen = <GeneralCommunityScreen />;
   else if (path.startsWith("/community/themes/")) screen = <ThemeCommunityScreen />;
-  else if (path === "/expeditions") screen = <ExpeditionListScreen />;
+  else if (path === "/expeditions") screen = <DailyArtifactHomeScreen />;
+  else if (path === "/expeditions/teams") screen = <ExpeditionListScreen />;
   else if (path === "/expeditions/new") screen = <CreateExpeditionScreen />;
   else if (path.endsWith("/invite")) screen = <InviteScreen />;
   else if (path.endsWith("/chat")) screen = <ChatScreen />;
@@ -70,6 +76,7 @@ export function PrototypeRouter() {
   else if (path === "/my/completed") screen = <CompletedThemesScreen />;
   else if (path === "/my/level") screen = <LevelScreen />;
   else if (path === "/my/license") screen = <LicenseScreen />;
+  else if (path === "/my/artifacts") screen = <ArtifactCollectionScreen />;
   else if (path === "/settings") screen = <SettingsScreen />;
   else if (path === "/report") screen = <ReportScreen />;
   return <AppShell>{screen}</AppShell>;

@@ -34,3 +34,4 @@
 .prototype-toast { background: var(--color-surface-dark); border-radius: var(--radius-pill); bottom: calc(var(--size-tab-bar) + .35rem); color: var(--color-text-on-dark); font-size: .8rem; left: 50%; padding: .65rem 1rem; position: absolute; transform: translateX(-50%); white-space: nowrap; z-index: 30; }
 .floating-create { background: var(--color-surface-dark); border-radius: var(--radius-pill); bottom: calc(var(--size-tab-bar) + .25rem); color: var(--color-text-on-dark); font-weight: 700; padding: .8rem 1.1rem; position: absolute; right: 1rem; z-index: 12; }
 .game-mode .app-content { padding: 0; }
+.map-mode .app-content { overflow: hidden; padding: 0; }
