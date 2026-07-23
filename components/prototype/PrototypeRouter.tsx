@@ -10,6 +10,8 @@ import { VerificationChoiceScreen, EmailVerificationScreen, ImageVerificationScr
 import { HobbiesScreen, ProfileSetupScreen, InterestsScreen } from "./screens/ProfileSetupScreens";
 import { HomeScreen } from "./screens/HomeScreen";
 import { ThemeDetailScreen, ThemeListScreen } from "./screens/ThemeScreens";
+import { ReviewListScreen, ReviewWriteScreen } from "./screens/ReviewScreens";
+import { CommunityHomeScreen, GeneralCommunityScreen, ThemeCommunityScreen } from "./screens/CommunityScreens";
 import { ExpeditionListScreen } from "./screens/ExpeditionListScreen";
 import { CreateExpeditionScreen, ExpeditionDetailScreen, InviteScreen } from "./screens/ExpeditionDetailScreens";
 import { ChatScreen, MeetupScreen } from "./screens/ChatMeetupScreens";
@@ -41,7 +43,12 @@ export function PrototypeRouter() {
   else if (path === "/profile/hobbies") screen = <HobbiesScreen />;
   else if (path === "/home") screen = <HomeScreen />;
   else if (path === "/themes") screen = <ThemeListScreen />;
+  else if (/^\/themes\/[^/]+\/reviews\/new$/.test(path)) screen = <ReviewWriteScreen />;
+  else if (/^\/themes\/[^/]+\/reviews$/.test(path)) screen = <ReviewListScreen />;
   else if (path.startsWith("/themes/")) screen = <ThemeDetailScreen />;
+  else if (path === "/community") screen = <CommunityHomeScreen />;
+  else if (path === "/community/general") screen = <GeneralCommunityScreen />;
+  else if (path.startsWith("/community/themes/")) screen = <ThemeCommunityScreen />;
   else if (path === "/expeditions") screen = <ExpeditionListScreen />;
   else if (path === "/expeditions/new") screen = <CreateExpeditionScreen />;
   else if (path.endsWith("/invite")) screen = <InviteScreen />;

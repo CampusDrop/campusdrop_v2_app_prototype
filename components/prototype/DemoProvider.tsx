@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
+import { createContext, useContext, useState, useSyncExternalStore, type ReactNode } from "react";
 import type { DemoState } from "@/lib/prototype/types";
 
 const STORAGE_KEY = "campusdrop-demo-v1";
@@ -23,6 +23,8 @@ const initialState: DemoState = {
   coupon: "available",
   messages: ["안녕하세요! 금요일에 만나요 👋", "저는 10분 먼저 도착할게요!"],
   friends: ["캠퍼스루키"],
+  reviews: [],
+  communityPosts: [],
   demoView: "normal",
 };
 
@@ -36,22 +38,57 @@ type DemoContextValue = {
 };
 
 const DemoContext = createContext<DemoContextValue | null>(null);
+const stateListeners = new Set<() => void>();
+let clientState: DemoState | null = null;
+
+function getServerState() {
+  return initialState;
+}
+
+function getClientState() {
+  if (typeof window === "undefined") return initialState;
+  if (clientState) return clientState;
+  try {
+    const saved = window.localStorage.getItem(STORAGE_KEY);
+    clientState = saved
+      ? { ...initialState, ...JSON.parse(saved), hydrated: true }
+      : { ...initialState, hydrated: true };
+  } catch {
+    clientState = { ...initialState, hydrated: true };
+  }
+  return clientState;
+}
+
+function subscribeToState(listener: () => void) {
+  stateListeners.add(listener);
+  function syncFromStorage(event: StorageEvent) {
+    if (event.key !== STORAGE_KEY) return;
+    clientState = null;
+    stateListeners.forEach((notify) => notify());
+  }
+  window.addEventListener("storage", syncFromStorage);
+  return () => {
+    stateListeners.delete(listener);
+    window.removeEventListener("storage", syncFromStorage);
+  };
+}
+
+function commitState(nextState: DemoState) {
+  clientState = { ...nextState, hydrated: true };
+  try {
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(clientState));
+  } catch {
+    // Continue with in-memory state when browser storage is unavailable.
+  }
+  stateListeners.forEach((listener) => listener());
+}
 
 export function DemoProvider({ children }: { children: ReactNode }) {
-  const [state, setState] = useState(initialState);
+  const state = useSyncExternalStore(subscribeToState, getClientState, getServerState);
   const [toast, setToast] = useState("");
 
-  useEffect(() => {
-    const saved = window.localStorage.getItem(STORAGE_KEY);
-    setState(saved ? { ...initialState, ...JSON.parse(saved), hydrated: true } : { ...initialState, hydrated: true });
-  }, []);
-
-  useEffect(() => {
-    if (state.hydrated) window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }, [state]);
-
   function update(patch: Partial<DemoState>) {
-    setState((current) => ({ ...current, ...patch }));
+    commitState({ ...getClientState(), ...patch });
   }
 
   function notify(message: string) {
@@ -60,8 +97,7 @@ export function DemoProvider({ children }: { children: ReactNode }) {
   }
 
   function reset() {
-    window.localStorage.removeItem(STORAGE_KEY);
-    setState({ ...initialState, hydrated: true });
+    commitState({ ...initialState, hydrated: true });
     notify("데모가 초기화됐어요");
   }
 

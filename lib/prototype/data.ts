@@ -1,4 +1,4 @@
-import type { Expedition, Theme } from "./types";
+import type { CommunityPost, Expedition, Theme, ThemeReview } from "./types";
 
 export const themes: Theme[] = [
   {
@@ -78,6 +78,20 @@ export const teamMembers = [
   { name: "미로냥", avatar: "🐈", completed: 4, interest: "게임" },
   { name: "사진곰", avatar: "🐻", completed: 7, interest: "사진" },
   { name: "카페콩", avatar: "🫘", completed: 2, interest: "카페" },
+];
+
+export const themeReviews: ThemeReview[] = [
+  { id: "review-1", themeId: "missing-key", author: "미로냥", rating: 5, content: "첫 테마로 딱 좋아요. 캠퍼스를 새롭게 보게 됐고 마지막 협동 문제가 특히 재미있었어요!", spoiler: false, createdAt: "7월 21일" },
+  { id: "review-2", themeId: "missing-key", author: "사진곰", rating: 4, content: "야외 이동이 조금 있지만 단서 연결이 자연스러워요. 친구들과 천천히 풀면 더 재밌어요.", spoiler: false, createdAt: "7월 20일" },
+  { id: "review-3", themeId: "red-moon-library", author: "밤샘부엉이", rating: 5, content: "금지된 서가의 마지막 장치가 정말 인상적이었어요.", spoiler: true, createdAt: "7월 19일" },
+  { id: "review-4", themeId: "hidden-classroom", author: "404탐사원", rating: 4, content: "난이도와 이동 거리의 균형이 좋고, 숫자 암호를 좋아한다면 추천해요.", spoiler: false, createdAt: "7월 18일" },
+];
+
+export const communityPosts: CommunityPost[] = [
+  { id: "post-1", scope: "general", author: "캠퍼스루키", content: "이번 주 금요일 저녁에 같이 탐험할 분 있나요? 초보도 환영해요!", likes: 12, createdAt: "방금 전" },
+  { id: "post-2", scope: "general", author: "사진곰", content: "비 온 뒤에는 바닥이 미끄러우니 편한 운동화를 추천해요.", likes: 8, createdAt: "18분 전" },
+  { id: "post-3", scope: "missing-key", author: "미로냥", content: "우리 팀은 47분에 성공했어요! 마지막 협동 순간이 아직도 기억나요 🔑", likes: 16, createdAt: "어제" },
+  { id: "post-4", scope: "missing-key", author: "카페콩", content: "스포일러 없이 말하면, 초반 안내 문구를 꼼꼼히 읽는 게 좋아요.", likes: 9, createdAt: "어제" },
 ];
 
 export type PreferenceOption = { id: string; label: string; image: string };

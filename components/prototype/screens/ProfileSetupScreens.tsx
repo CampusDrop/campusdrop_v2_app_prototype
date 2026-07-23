@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { hobbyOptions, interestOptions, type PreferenceOption } from "@/lib/prototype/data";
 import { useDemo } from "../DemoProvider";
@@ -36,5 +37,5 @@ export function HobbiesScreen() {
 }
 
 function PreferenceScreen({ step, title, description, options, selected, onToggle, action, onContinue }: { step: string; title: string; description: string; options: PreferenceOption[]; selected: string[]; onToggle: (item: string) => void; action: string; onContinue: () => void }) {
-  return <section className="onboarding-screen preference-screen"><div className="preference-intro"><p className="step-label">{step}</p><h1>{title}</h1><p className="muted">{description}</p></div><div className="preference-grid">{options.map((item) => <button key={item.id} data-selected={selected.includes(item.label)} onClick={() => onToggle(item.label)} aria-pressed={selected.includes(item.label)}><img src={`${import.meta.env.BASE_URL}${item.image.slice(1)}`} alt="" /><span>{item.label}</span><i>✓</i></button>)}</div><div className="preference-footer"><p className="selection-count">{selected.length}개 선택 · 최소 3개</p><button className="primary" disabled={selected.length < 3} onClick={onContinue}>{action}</button></div></section>;
+  return <section className="onboarding-screen preference-screen"><div className="preference-intro"><p className="step-label">{step}</p><h1>{title}</h1><p className="muted">{description}</p></div><div className="preference-grid">{options.map((item) => <button key={item.id} data-selected={selected.includes(item.label)} onClick={() => onToggle(item.label)} aria-pressed={selected.includes(item.label)}><Image src={`${import.meta.env.BASE_URL}${item.image.slice(1)}`} alt="" fill sizes="(min-width: 400px) 25vw, 33vw" unoptimized /><span>{item.label}</span><i>✓</i></button>)}</div><div className="preference-footer"><p className="selection-count">{selected.length}개 선택 · 최소 3개</p><button className="primary" disabled={selected.length < 3} onClick={onContinue}>{action}</button></div></section>;
 }

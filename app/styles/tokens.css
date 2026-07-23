@@ -110,7 +110,9 @@
   --space-16: 4rem;
 
   /* Layout */
-  --size-tab-bar: 5.2rem;
+  --height-tab-bar: 4.65rem;
+  --inset-tab-bar: max(.65rem, env(safe-area-inset-bottom));
+  --size-tab-bar: calc(var(--height-tab-bar) + var(--inset-tab-bar) + .7rem);
 
   /* Shape, depth, motion */
   --radius-sm: 0.75rem;

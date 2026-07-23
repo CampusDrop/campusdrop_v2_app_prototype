@@ -1,0 +1,80 @@
+.theme-review-preview, .theme-community-preview { align-items: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); display: grid; gap: .7rem; grid-template-columns: auto 1fr auto; padding: .8rem; text-align: left; width: 100%; }
+.theme-review-preview > span { align-items: center; display: grid; justify-items: center; }
+.theme-review-preview > span > b { font-size: 1.2rem; }
+.theme-review-preview i, .review-summary i { color: var(--color-brand-500); font-size: .65rem; font-style: normal; letter-spacing: -.08em; }
+.theme-review-preview p, .theme-community-preview p { display: grid; }
+.theme-review-preview small, .theme-community-preview small { color: var(--color-text-muted); }
+.theme-review-preview > strong, .theme-community-preview > strong { color: var(--color-text-muted); }
+.theme-community-preview > span { align-items: center; background: var(--color-surface-soft); border-radius: .75rem; display: flex; font-size: 1.2rem; height: 2.7rem; justify-content: center; width: 2.7rem; }
+.theme-community-preview[data-open="true"] { background: var(--color-success-soft); border-color: color-mix(in srgb, var(--color-success) 35%, transparent); }
+.review-screen { gap: 1rem; }
+.review-summary { background: linear-gradient(145deg, var(--color-brand-100), var(--color-surface)); border: 1px solid var(--color-border); border-radius: var(--radius-lg); display: grid; gap: .75rem; padding: 1rem; }
+.review-summary > div { align-items: center; display: flex; gap: .8rem; }
+.review-summary > div > span { align-items: center; background: var(--color-surface); border-radius: 1rem; display: flex; font-size: 2rem; height: 4rem; justify-content: center; width: 4rem; }
+.review-summary p { display: grid; }
+.review-summary p > b { font-size: 1.8rem; line-height: 1; }
+.review-summary > small { color: var(--color-text-muted); }
+.review-list { display: grid; gap: .7rem; }
+.review-card { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); display: grid; gap: .7rem; padding: .9rem; }
+.review-card header { align-items: center; display: grid; gap: .55rem; grid-template-columns: auto 1fr auto; }
+.review-card header > span { align-items: center; background: var(--color-surface-soft); border-radius: 50%; display: flex; height: 2.3rem; justify-content: center; width: 2.3rem; }
+.review-card header p { display: grid; }
+.review-card header small { color: var(--color-text-muted); }
+.review-card header strong { color: var(--color-brand-500); font-size: .72rem; letter-spacing: -.08em; }
+.review-card > p { font-size: .85rem; }
+.review-card > p[data-hidden="true"] { background: repeating-linear-gradient(135deg, var(--color-brand-50), var(--color-brand-50) 7px, var(--color-brand-100) 7px, var(--color-brand-100) 14px); border-radius: var(--radius-sm); color: var(--color-text-muted); padding: 1rem; text-align: center; }
+.review-card > button { background: transparent; color: var(--color-brand-600); font-size: .75rem; font-weight: 700; justify-self: center; }
+.review-card > .tag { justify-self: start; }
+.locked-review > b, .community-lock > b { font-size: 3rem; }
+.review-form { padding-bottom: 2rem; }
+.review-theme-chip { align-items: center; background: var(--color-surface); border-radius: var(--radius-md); display: flex; gap: .7rem; padding: .7rem; }
+.review-theme-chip > span { align-items: center; background: var(--color-brand-100); border-radius: .75rem; display: flex; font-size: 1.6rem; height: 3.2rem; justify-content: center; width: 3.2rem; }
+.review-theme-chip p { display: grid; }
+.review-theme-chip small { color: var(--color-text-muted); }
+.rating-picker > div { display: flex; gap: .3rem; }
+.rating-picker button { background: transparent; color: var(--color-border); font-size: 2.4rem; line-height: 1; padding: .1rem; }
+.rating-picker button[data-selected="true"] { color: var(--color-brand-500); }
+.rating-picker > small, .review-form label > small { color: var(--color-text-muted); }
+.spoiler-check { align-items: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); display: flex; font-weight: 300; padding: .8rem; }
+.spoiler-check input { min-height: 1.2rem; width: auto; }
+.spoiler-check span { display: grid; }
+.spoiler-check small { color: var(--color-text-muted); }
+.community-home, .community-feed { gap: 1rem; }
+.community-intro { display: grid; gap: .5rem; }
+.community-intro > p:last-child { color: var(--color-text-muted); font-size: .82rem; }
+.general-room-card { align-items: center; background: var(--color-surface-dark); border-radius: var(--radius-lg); color: var(--color-text-on-dark); display: grid; gap: .8rem; grid-template-columns: auto 1fr auto; padding: 1rem; text-align: left; width: 100%; }
+.general-room-card > span { align-items: center; background: var(--color-brand-500); border-radius: 1rem; display: flex; font-size: 2rem; height: 4.5rem; justify-content: center; width: 4.5rem; }
+.general-room-card > div { display: grid; gap: .25rem; }
+.general-room-card p { color: var(--color-text-on-dark-muted); font-size: .75rem; }
+.general-room-card i, .theme-room-list i, .friends-shortcut i { font-style: normal; }
+.theme-room-list { display: grid; gap: .55rem; }
+.theme-room-list > button { align-items: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); display: grid; gap: .7rem; grid-template-columns: auto 1fr auto; padding: .7rem; text-align: left; width: 100%; }
+.theme-room-list > button > span { align-items: center; background: var(--room-color); border-radius: .8rem; display: flex; font-size: 1.6rem; height: 3.2rem; justify-content: center; width: 3.2rem; }
+.theme-room-list > button > div { display: grid; }
+.theme-room-list small { color: var(--color-text-muted); }
+.theme-room-list > button[data-locked="true"] { background: color-mix(in srgb, var(--color-surface) 65%, var(--color-canvas)); color: var(--color-text-muted); }
+.friends-shortcut { align-items: center; background: var(--color-accent-special-soft); border-radius: var(--radius-md); display: grid; gap: .7rem; grid-template-columns: auto 1fr auto; padding: .8rem; text-align: left; width: 100%; }
+.friends-shortcut > span { font-size: 1.5rem; }
+.friends-shortcut p { display: grid; }
+.friends-shortcut small { color: var(--color-text-muted); }
+.community-lock { min-height: 100%; }
+.community-lock .tag { margin-bottom: -.2rem; }
+.community-room-head { align-items: center; background: linear-gradient(145deg, var(--color-accent-special-soft), var(--color-surface)); border-radius: var(--radius-lg); display: flex; justify-content: space-between; padding: 1rem; }
+.community-room-head.themed { background: linear-gradient(145deg, var(--color-success-soft), var(--color-surface)); }
+.community-room-head > div { display: grid; gap: .35rem; }
+.community-room-head p { color: var(--color-text-muted); font-size: .78rem; }
+.community-room-head > span { font-size: 2.5rem; }
+.post-composer { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); display: grid; gap: .4rem; padding: .7rem; }
+.post-composer textarea { border: 0; min-height: 4.5rem; padding: .3rem; }
+.post-composer > div { align-items: center; display: flex; justify-content: space-between; }
+.post-composer small { color: var(--color-text-muted); }
+.post-list { display: grid; gap: .65rem; }
+.post-list article { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); display: grid; gap: .7rem; padding: .85rem; }
+.post-list header { align-items: center; display: grid; gap: .55rem; grid-template-columns: auto 1fr auto; }
+.post-list header > span { align-items: center; background: var(--color-surface-soft); border-radius: 50%; display: flex; height: 2.3rem; justify-content: center; width: 2.3rem; }
+.post-list header p { display: grid; }
+.post-list header small { color: var(--color-text-muted); }
+.post-list header button { background: transparent; }
+.post-list article > p { font-size: .86rem; }
+.post-list footer { border-top: 1px solid var(--color-border); display: flex; gap: 1rem; padding-top: .55rem; }
+.post-list footer button { background: transparent; color: var(--color-text-muted); font-size: .72rem; }

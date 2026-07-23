@@ -3,6 +3,25 @@ export type DemoView = "normal" | "loading" | "empty" | "error" | "offline" | "d
 export type CouponStatus = "available" | "used" | "expired";
 export type AuthProvider = "kakao" | "google" | "apple";
 
+export type ThemeReview = {
+  id: string;
+  themeId: string;
+  author: string;
+  rating: number;
+  content: string;
+  spoiler: boolean;
+  createdAt: string;
+};
+
+export type CommunityPost = {
+  id: string;
+  scope: "general" | string;
+  author: string;
+  content: string;
+  likes: number;
+  createdAt: string;
+};
+
 export type Theme = {
   id: string;
   title: string;
@@ -48,5 +67,7 @@ export type DemoState = {
   coupon: CouponStatus;
   messages: string[];
   friends: string[];
+  reviews: ThemeReview[];
+  communityPosts: CommunityPost[];
   demoView: DemoView;
 };

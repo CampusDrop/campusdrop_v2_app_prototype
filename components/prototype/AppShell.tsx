@@ -7,6 +7,8 @@ import { useDemo } from "./DemoProvider";
 
 const titleByPath: Record<string, string> = {
   "/themes": "테마",
+  "/community": "커뮤니티",
+  "/community/general": "캠퍼스 라운지",
   "/expeditions": "탐험대",
   "/expeditions/new": "탐험대 만들기",
   "/friends": "친구",
@@ -27,15 +29,15 @@ export function AppShell({ children }: { children: ReactNode }) {
   const { state, toast } = useDemo();
   const onboarding = pathname === "/" || pathname.startsWith("/onboarding") || pathname.startsWith("/auth") || pathname.startsWith("/verification") || pathname.startsWith("/profile/");
   const game = pathname.startsWith("/play/");
-  const topTabs = ["/home", "/themes", "/expeditions", "/friends", "/my"];
-  const title = titleByPath[pathname] ?? (pathname.includes("/chat") ? "임시 채팅방" : pathname.includes("/meetup") ? "약속·체크인" : pathname.startsWith("/themes/") ? "테마 상세" : pathname.startsWith("/expeditions/") ? "탐험대 상세" : pathname.startsWith("/rewards/") ? "쿠폰 상세" : "CampusDrop");
+  const topTabs = ["/home", "/themes", "/expeditions", "/community", "/my"];
+  const title = titleByPath[pathname] ?? (pathname.endsWith("/reviews/new") ? "리뷰 작성" : pathname.endsWith("/reviews") ? "테마 리뷰" : pathname.startsWith("/community/themes/") ? "테마 비밀방" : pathname.includes("/chat") ? "임시 채팅방" : pathname.includes("/meetup") ? "약속·체크인" : pathname.startsWith("/themes/") ? "테마 상세" : pathname.startsWith("/expeditions/") ? "탐험대 상세" : pathname.startsWith("/rewards/") ? "쿠폰 상세" : "CampusDrop");
   const showBack = !onboarding && !topTabs.includes(pathname) && !game;
   const nav = [
-    ["/home", "⌂", translate(state.language, "home")],
-    ["/themes", "◇", translate(state.language, "themes")],
-    ["/expeditions", "♙", translate(state.language, "expeditions")],
-    ["/friends", "♧", translate(state.language, "friends")],
-    ["/my", "●", translate(state.language, "my")],
+    { path: "/home", icon: "⌂", label: translate(state.language, "home") },
+    { path: "/themes", icon: "◇", label: translate(state.language, "themes") },
+    { path: "/expeditions", icon: "⌖", label: translate(state.language, "expeditions"), primary: true },
+    { path: "/community", icon: "♧", label: translate(state.language, "community") },
+    { path: "/my", icon: "●", label: translate(state.language, "my") },
   ];
 
   return (
@@ -51,11 +53,12 @@ export function AppShell({ children }: { children: ReactNode }) {
         <main className="app-content">{children}</main>
         {!onboarding && !game && (
           <nav className="tab-bar" aria-label="주요 탭">
-            {nav.map(([path, icon, label]) => (
-              <button key={path} data-active={pathname === path || (path !== "/home" && pathname.startsWith(`${path}/`))} onClick={() => router.push(path)}>
+            {nav.map(({ path, icon, label, primary }) => {
+              const active = pathname === path || (path !== "/home" && pathname.startsWith(`${path}/`));
+              return <button key={path} data-active={active} data-primary={primary || undefined} aria-current={active ? "page" : undefined} onClick={() => router.push(path)}>
                 <span>{icon}</span><small>{label}</small>
               </button>
-            ))}
+            })}
           </nav>
         )}
         {toast && <div className="prototype-toast" aria-live="polite">{toast}</div>}
