@@ -44,7 +44,7 @@ export function ThemeDetailScreen() {
           ? <><button className="secondary" onClick={() => notify("공개 알림을 신청했어요")}>알림 받기</button><button className="primary" disabled>22:00 공개</button></>
           : canReplay
             ? <><button className="secondary" onClick={() => router.push(`/themes/${theme.id}/reviews`)}>완료 기록</button><button className="primary" onClick={() => router.push("/play/key-session")}>다시 탐사하기</button></>
-            : <><button className="secondary" onClick={() => router.push(`/expeditions/new?theme=${theme.id}`)}>친구들과 만들기</button><button className="primary" onClick={() => router.push("/expeditions")}>탐험대 찾기</button></>}
+            : <><button className="secondary" onClick={() => router.push(`/expeditions/new?theme=${theme.id}`)}>친구들과 만들기</button><button className="primary" onClick={() => router.push("/expeditions/teams")}>탐험대 찾기</button></>}
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ export function ExpeditionDetailScreen() {
   function join() {
     setConfirm(false);
     if (!state.license) return router.push("/my/license");
-    if (expedition.full) { notify("방금 정원이 마감됐어요"); return router.push("/expeditions"); }
+    if (expedition.full) { notify("방금 정원이 마감됐어요"); return router.push("/expeditions/teams"); }
     update({ joined: true }); notify("탐험대에 합류했어요!");
   }
   return (

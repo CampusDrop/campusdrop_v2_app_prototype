@@ -81,6 +81,10 @@ export type DemoState = {
   communityPosts: CommunityPost[];
   artifactIds: string[];
   dailyCompletedDate: string | null;
+  dailyChestDate: string | null;
+  dailyChestCount: number;
+  lastDailyArtifactId: string | null;
+  lastDailyArtifactWasNew: boolean;
   dailyStreak: number;
   mainThemeRuns: number;
   demoView: DemoView;

@@ -54,7 +54,8 @@ export function PrototypeRouter() {
   else if (path === "/community") screen = <CommunityHomeScreen />;
   else if (path === "/community/general") screen = <GeneralCommunityScreen />;
   else if (path.startsWith("/community/themes/")) screen = <ThemeCommunityScreen />;
-  else if (path === "/expeditions") screen = <ExpeditionListScreen />;
+  else if (path === "/expeditions") screen = <DailyArtifactHomeScreen />;
+  else if (path === "/expeditions/teams") screen = <ExpeditionListScreen />;
   else if (path === "/expeditions/new") screen = <CreateExpeditionScreen />;
   else if (path.endsWith("/invite")) screen = <InviteScreen />;
   else if (path.endsWith("/chat")) screen = <ChatScreen />;

@@ -2,15 +2,15 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { hiddenArtifacts } from "@/lib/prototype/artifacts";
+import { restorationArtifact } from "@/lib/prototype/artifacts";
 import { useDemo } from "../DemoProvider";
 import { Modal, Progress, StateGate, Tag } from "../ui";
 
 export function ResultScreen() {
   const router = useRouter();
   const { state } = useDemo();
-  const hasMonthlyArtifact = hiddenArtifacts.some((artifact) => artifact.themeId === "missing-key" && state.artifactIds.includes(artifact.id));
-  const changedEnding = state.mainThemeRuns >= 2 && hasMonthlyArtifact;
+  const hasRestorationArtifact = state.artifactIds.includes(restorationArtifact.id);
+  const changedEnding = state.mainThemeRuns >= 2 && hasRestorationArtifact;
   const replay = state.mainThemeRuns >= 2;
   return (
     <div className={`result-screen ${changedEnding ? "changed-ending" : ""}`}>

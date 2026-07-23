@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useSyncExternalStore, type ReactNode } from "react";
 import type { DemoState } from "@/lib/prototype/types";
+import { demoArchivedArtifactIds } from "@/lib/prototype/artifacts";
 
 const STORAGE_KEY = "campusdrop-demo-v1";
 const initialState: DemoState = {
@@ -25,8 +26,12 @@ const initialState: DemoState = {
   friends: ["캠퍼스루키"],
   reviews: [],
   communityPosts: [],
-  artifactIds: [],
+  artifactIds: demoArchivedArtifactIds,
   dailyCompletedDate: null,
+  dailyChestDate: null,
+  dailyChestCount: 0,
+  lastDailyArtifactId: null,
+  lastDailyArtifactWasNew: false,
   dailyStreak: 0,
   mainThemeRuns: 0,
   demoView: "normal",
@@ -54,9 +59,17 @@ function getClientState() {
   if (clientState) return clientState;
   try {
     const saved = window.localStorage.getItem(STORAGE_KEY);
-    clientState = saved
-      ? { ...initialState, ...JSON.parse(saved), hydrated: true }
-      : { ...initialState, hydrated: true };
+    if (saved) {
+      const parsed = JSON.parse(saved) as Partial<DemoState>;
+      clientState = {
+        ...initialState,
+        ...parsed,
+        artifactIds: [...new Set([...demoArchivedArtifactIds, ...(parsed.artifactIds ?? [])])],
+        hydrated: true,
+      };
+    } else {
+      clientState = { ...initialState, hydrated: true };
+    }
   } catch {
     clientState = { ...initialState, hydrated: true };
   }
