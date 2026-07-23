@@ -1,20 +1,33 @@
 import { fileURLToPath, URL } from "node:url";
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 
-export default defineConfig({
-  root: fileURLToPath(new URL("./github-pages", import.meta.url)),
-  base: "/campusdrop_v2_app_prototype/",
-  publicDir: fileURLToPath(new URL("./public", import.meta.url)),
-  plugins: [react()],
-  resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./", import.meta.url)),
-      "next/navigation": fileURLToPath(new URL("./components/prototype/pagesNavigation.ts", import.meta.url)),
+const projectRoot = fileURLToPath(new URL("./", import.meta.url));
+
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, projectRoot, "");
+  const kakaoMapsAppKey =
+    process.env.NEXT_PUBLIC_KAKAO_MAP_APP_KEY ??
+    env.NEXT_PUBLIC_KAKAO_MAP_APP_KEY ??
+    "";
+
+  return {
+    root: fileURLToPath(new URL("./github-pages", import.meta.url)),
+    base: "/campusdrop_v2_app_prototype/",
+    publicDir: fileURLToPath(new URL("./public", import.meta.url)),
+    define: {
+      "process.env.NEXT_PUBLIC_KAKAO_MAP_APP_KEY": JSON.stringify(kakaoMapsAppKey),
     },
-  },
-  build: {
-    outDir: fileURLToPath(new URL("./gh-pages", import.meta.url)),
-    emptyOutDir: true,
-  },
+    plugins: [react()],
+    resolve: {
+      alias: {
+        "@": projectRoot,
+        "next/navigation": fileURLToPath(new URL("./components/prototype/pagesNavigation.ts", import.meta.url)),
+      },
+    },
+    build: {
+      outDir: fileURLToPath(new URL("./gh-pages", import.meta.url)),
+      emptyOutDir: true,
+    },
+  };
 });

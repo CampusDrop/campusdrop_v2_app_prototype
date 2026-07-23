@@ -32,6 +32,11 @@ JavaScript SDK domain (`http://localhost:3001`). Without a key, the expedition
 screen keeps its built-in fallback map so the rest of the prototype remains
 usable.
 
+For GitHub Pages, add the same JavaScript key as the Actions repository secret
+`KAKAO_MAP_JAVASCRIPT_KEY` and register `https://campusdrop.github.io` as a
+JavaScript SDK domain in Kakao Developers. The Pages workflow injects the key
+only while building the public client bundle.
+
 ## Included Shape
 
 - edit site code under `app/`
