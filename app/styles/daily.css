@@ -107,6 +107,10 @@
   position: absolute;
 }
 .kakao-map-layer[data-status="ready"] .kakao-map-brand-blur { opacity: .9; }
+.expedition-map-canvas[data-mission-open="false"] .kakao-map-layer[data-status="ready"] .kakao-map-brand-blur {
+  backdrop-filter: none;
+  opacity: 0;
+}
 .kakao-map-status {
   align-items: center;
   backdrop-filter: blur(12px);
@@ -351,6 +355,16 @@
   width: 3rem;
   z-index: 7;
 }
+.expedition-map-canvas[data-mission-open="false"] :is(
+  .map-top-hud,
+  .map-compass,
+  .map-coordinate-readout,
+  .map-treasure-layer,
+  .current-location-pin,
+  .map-location-control,
+  .map-season-complete,
+  .map-mission-peek
+) { z-index: 12; }
 
 .map-season-complete {
   backdrop-filter: blur(12px);
@@ -389,7 +403,8 @@
   padding: .8rem .9rem .9rem;
   position: absolute;
   right: .65rem;
-  transform: translateY(calc(100% + var(--size-tab-bar) + 1rem));
+  transform: translateY(calc(100% + var(--size-tab-bar) + 1rem)) scale(.94);
+  transform-origin: bottom center;
   transition: opacity .24s ease, transform .3s cubic-bezier(.2, .8, .2, 1);
   opacity: 0;
   pointer-events: none;
@@ -404,7 +419,7 @@
   right: 1rem;
   top: 0;
 }
-.map-mission-sheet[data-open="true"] { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.map-mission-sheet[data-open="true"] { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
 .map-sheet-toggle { align-items: center; background: transparent; display: flex; height: .65rem; justify-content: center; justify-self: stretch; margin: -.25rem 0 -.1rem; }
 .map-sheet-toggle i { background: #8e805f; border-radius: var(--radius-pill); display: block; height: .2rem; width: 2.8rem; }
 .map-mission-peek {
@@ -425,11 +440,12 @@
   position: absolute;
   right: .85rem;
   text-align: left;
-  transform: translateY(1rem);
+  transform: translateY(1rem) scale(.96);
+  transform-origin: bottom center;
   transition: opacity .2s ease .12s, transform .25s ease .12s;
   z-index: 8;
 }
-.map-mission-peek[data-visible="true"] { opacity: 1; pointer-events: auto; transform: translateY(0); }
+.map-mission-peek[data-visible="true"] { opacity: 1; pointer-events: auto; transform: translateY(0) scale(1); }
 .map-mission-peek > span { align-items: center; background: var(--color-brand-100); border-radius: .65rem; color: var(--color-brand-600); display: flex; font-size: .8rem; height: 2.15rem; justify-content: center; width: 2.15rem; }
 .map-mission-peek p { display: grid; }
 .map-mission-peek small { color: var(--color-brand-600); font-size: .52rem; font-weight: 800; letter-spacing: .04em; }

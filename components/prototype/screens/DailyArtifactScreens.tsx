@@ -55,7 +55,7 @@ export function DailyArtifactHomeScreen() {
 
   return (
     <div className="expedition-map-screen" data-completed={completedToday} data-season-complete={seasonComplete}>
-      <div className="expedition-map-canvas" data-map-ready={mapStatus === "ready"}>
+      <div className="expedition-map-canvas" data-map-ready={mapStatus === "ready"} data-mission-open={missionOpen}>
         <KakaoExpeditionMap
           chestCount={chestCount}
           completedToday={completedToday}
@@ -109,7 +109,7 @@ export function DailyArtifactHomeScreen() {
         </div>}
 
         {mapStatus !== "ready" && <div className="current-location-pin" aria-label="현재 위치"><em aria-hidden="true" /><i>⌖</i><span>탐사대 위치</span></div>}
-        <button className="map-location-control" aria-label="내 위치로 지도 이동" onClick={() => setMapFocusRequest((request) => request + 1)}>◎</button>
+        <button className="map-location-control" aria-label="내 위치로 지도 이동하고 오늘의 탐사 패널 접기" onClick={() => { setMissionOpen(false); setMapFocusRequest((request) => request + 1); }}>◎</button>
 
         {seasonComplete && <section className="map-season-complete">
           <span>◆</span>
