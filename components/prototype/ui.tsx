@@ -7,16 +7,27 @@ import { useDemo } from "./DemoProvider";
 export function BrandLogo({ className = "", withName = false }: { className?: string; withName?: boolean }) {
   return (
     <span className={`brand-logo ${className}`.trim()} aria-label="CampusDrop">
-      <Image
-        className="brand-logo-mark"
-        src={`${import.meta.env.BASE_URL}brand/campusdrop-logo.png`}
-        alt=""
-        width={116}
-        height={159}
-        priority
-        unoptimized
-      />
-      {withName && <span className="brand-logo-name">CampusDrop</span>}
+      {withName ? (
+        <Image
+          className="brand-logo-wordmark"
+          src={`${import.meta.env.BASE_URL}brand/campusdrop-typo.png`}
+          alt=""
+          width={812}
+          height={179}
+          priority
+          unoptimized
+        />
+      ) : (
+        <Image
+          className="brand-logo-mark"
+          src={`${import.meta.env.BASE_URL}brand/campusdrop-logo.png`}
+          alt=""
+          width={116}
+          height={159}
+          priority
+          unoptimized
+        />
+      )}
     </span>
   );
 }

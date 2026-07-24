@@ -3,7 +3,7 @@ html { background: var(--color-surface-selected); }
 body { margin: 0; background: var(--color-canvas); color: var(--color-text); font-family: var(--font-sans); font-weight: 300; line-height: 1.5; }
 .brand-logo { align-items: center; display: inline-flex; line-height: 1; }
 .brand-logo-mark { display: block; height: auto; object-fit: contain; width: auto; }
-.brand-logo-name { color: var(--color-brand-500); font-weight: 700; letter-spacing: -.045em; }
+.brand-logo-wordmark { display: block; height: auto; object-fit: contain; width: auto; }
 button, input, select, textarea { color: inherit; font: inherit; }
 button { border: 0; cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: .45; }

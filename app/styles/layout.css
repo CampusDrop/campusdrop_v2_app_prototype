@@ -6,9 +6,8 @@
 .app-header + .app-content { padding-top: 4.3rem; }
 .app-header > strong { font-size: .95rem; }
 .app-header > :last-child { justify-self: end; }
-.mini-brand { gap: .45rem; }
-.mini-brand .brand-logo-mark { height: 2.25rem; }
-.mini-brand .brand-logo-name { font-size: 1rem; }
+.mini-brand { max-width: 8.6rem; }
+.mini-brand .brand-logo-wordmark { height: auto; width: 8.6rem; }
 .round-button { align-items: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 50%; display: flex; font-size: 1.5rem; height: 2.35rem; justify-content: center; width: 2.35rem; }
 .tab-bar { align-items: center; background: color-mix(in srgb, var(--color-surface) 96%, transparent); border: 1px solid color-mix(in srgb, var(--color-border) 78%, transparent); border-radius: 1.35rem; bottom: var(--inset-tab-bar); box-shadow: var(--shadow-nav); display: grid; grid-template-columns: repeat(5, 1fr); height: var(--height-tab-bar); left: .75rem; padding: .38rem .3rem .42rem; position: absolute; width: calc(100% - 1.5rem); z-index: 15; }
 .tab-bar button { align-items: center; background: transparent; border-radius: 1rem; color: var(--color-text-muted); display: flex; flex-direction: column; gap: .16rem; min-height: 3.45rem; position: relative; }
