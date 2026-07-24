@@ -82,6 +82,9 @@
   --color-explore-text-muted: var(--color-text-on-dark-muted);
   --color-explore-text-on-accent: var(--color-text-on-accent);
   --color-explore-border: var(--color-brand-400);
+  --color-explore-map-wash: var(--color-brand-500);
+  --color-explore-map-depth: var(--color-brand-700);
+  --color-explore-map-signal: var(--color-accent-500);
 
   /* Compatibility aliases for existing prototype components */
   --color-white: var(--color-neutral-0);
