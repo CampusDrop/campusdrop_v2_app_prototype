@@ -55,7 +55,19 @@ export function DailyArtifactHomeScreen() {
 
   return (
     <div className="expedition-map-screen" data-completed={completedToday} data-season-complete={seasonComplete}>
-      <div className="expedition-map-canvas" data-map-ready={mapStatus === "ready"} data-mission-open={missionOpen}>
+      <div
+        className="expedition-map-canvas"
+        data-map-ready={mapStatus === "ready"}
+        data-mission-open={missionOpen}
+        onPointerDown={(event) => {
+          const target = event.target;
+          if (
+            missionOpen
+            && target instanceof Element
+            && target.closest(".kakao-map-layer, .campus-map-grid, .campus-map-contours, .campus-road, .campus-map-building, .campus-map-green")
+          ) setMissionOpen(false);
+        }}
+      >
         <KakaoExpeditionMap
           chestCount={chestCount}
           completedToday={completedToday}
