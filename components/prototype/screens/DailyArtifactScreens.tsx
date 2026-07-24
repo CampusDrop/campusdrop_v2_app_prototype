@@ -13,7 +13,7 @@ import {
 } from "@/lib/prototype/artifacts";
 import { themes } from "@/lib/prototype/data";
 import { useDemo } from "../DemoProvider";
-import { KakaoExpeditionMap, type KakaoMapStatus } from "../KakaoExpeditionMap";
+import { KakaoExpeditionMap, type KakaoLocationStatus, type KakaoMapStatus } from "../KakaoExpeditionMap";
 import { Modal, Tag } from "../ui";
 
 const rarityTone: Record<string, string> = {
@@ -40,6 +40,7 @@ export function DailyArtifactHomeScreen() {
   const [missionOpen, setMissionOpen] = useState(true);
   const [mapFocusRequest, setMapFocusRequest] = useState(0);
   const [mapStatus, setMapStatus] = useState<KakaoMapStatus>("loading");
+  const [locationStatus, setLocationStatus] = useState<KakaoLocationStatus>("idle");
   const [mapPosition, setMapPosition] = useState({ lat: 37.5502, lng: 127.0738 });
   const todayKey = getKoreanDateKey();
   const chestCount = getTodayChestCount(state, todayKey);
@@ -51,6 +52,7 @@ export function DailyArtifactHomeScreen() {
   const nextChest = chestLocations[chestCount] ?? chestLocations[DAILY_CHEST_LIMIT - 1];
   const openTreasureHunt = useCallback(() => router.push("/daily/hunt"), [router]);
   const updateMapStatus = useCallback((status: KakaoMapStatus) => setMapStatus(status), []);
+  const updateLocationStatus = useCallback((status: KakaoLocationStatus) => setLocationStatus(status), []);
   const updateMapPosition = useCallback((position: { lat: number; lng: number }) => setMapPosition(position), []);
 
   return (
@@ -72,6 +74,7 @@ export function DailyArtifactHomeScreen() {
           chestCount={chestCount}
           completedToday={completedToday}
           focusRequest={mapFocusRequest}
+          onLocationStatusChange={updateLocationStatus}
           onPositionChange={updateMapPosition}
           onStatusChange={updateMapStatus}
           onTreasureSelect={openTreasureHunt}
@@ -97,7 +100,10 @@ export function DailyArtifactHomeScreen() {
         </header>
 
         <div className="map-compass" aria-hidden="true"><b>N</b><i>▲</i><span>W　＋　E</span><small>S</small></div>
-        <div className="map-coordinate-readout"><span>{mapPosition.lat.toFixed(4)}° N　{mapPosition.lng.toFixed(4)}° E</span><b><i /> {mapStatus === "ready" ? "GPS 연결됨" : "탐사 지도"}</b></div>
+        <div className="map-coordinate-readout" data-location-status={locationStatus}>
+          <span>{mapPosition.lat.toFixed(4)}° N　{mapPosition.lng.toFixed(4)}° E</span>
+          <b><i /> {mapStatus !== "ready" ? "탐사 지도" : locationStatus === "ready" ? "GPS 연결됨" : locationStatus === "locating" ? "현재 위치 확인 중" : "위치 권한 필요"}</b>
+        </div>
 
         {!seasonComplete && mapStatus !== "ready" && <div className="map-treasure-layer" aria-label="오늘 발견된 보물상자">
           <span className="map-route-dots route-one" aria-hidden="true" />

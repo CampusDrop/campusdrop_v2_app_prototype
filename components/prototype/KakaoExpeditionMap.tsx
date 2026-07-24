@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 
 export type KakaoMapStatus = "loading" | "ready" | "missing-key" | "error";
+export type KakaoLocationStatus = "idle" | "locating" | "ready" | "unavailable";
 
 type Coordinates = {
   lat: number;
@@ -50,6 +51,7 @@ type KakaoExpeditionMapProps = {
   chestCount: number;
   completedToday: boolean;
   focusRequest: number;
+  onLocationStatusChange(status: KakaoLocationStatus): void;
   onPositionChange(position: Coordinates): void;
   onStatusChange(status: KakaoMapStatus): void;
   onTreasureSelect(): void;
@@ -136,6 +138,7 @@ function createExplorerMarker() {
   const label = document.createElement("span");
 
   marker.className = "current-location-pin kakao-current-location";
+  marker.dataset.visible = "false";
   marker.setAttribute("aria-label", "현재 위치");
   scan.setAttribute("aria-hidden", "true");
   icon.textContent = "⌖";
@@ -144,10 +147,19 @@ function createExplorerMarker() {
   return marker;
 }
 
+function createLocationAtmosphere() {
+  const atmosphere = document.createElement("div");
+  atmosphere.className = "kakao-location-atmosphere";
+  atmosphere.dataset.visible = "false";
+  atmosphere.setAttribute("aria-hidden", "true");
+  return atmosphere;
+}
+
 export function KakaoExpeditionMap({
   chestCount,
   completedToday,
   focusRequest,
+  onLocationStatusChange,
   onPositionChange,
   onStatusChange,
   onTreasureSelect,
@@ -157,6 +169,9 @@ export function KakaoExpeditionMap({
   const mapRef = useRef<KakaoMapInstance | null>(null);
   const mapsApiRef = useRef<KakaoMapsApi | null>(null);
   const explorerOverlayRef = useRef<KakaoCustomOverlayInstance | null>(null);
+  const explorerMarkerRef = useRef<HTMLDivElement | null>(null);
+  const locationAtmosphereOverlayRef = useRef<KakaoCustomOverlayInstance | null>(null);
+  const locationAtmosphereElementRef = useRef<HTMLDivElement | null>(null);
   const [status, setStatus] = useState<KakaoMapStatus>(() => (
     process.env.NEXT_PUBLIC_KAKAO_MAP_APP_KEY ? "loading" : "missing-key"
   ));
@@ -198,23 +213,26 @@ export function KakaoExpeditionMap({
     const maps = mapsApiRef.current;
     if (status !== "ready" || !map || !maps) return;
 
-    const overlays: KakaoCustomOverlayInstance[] = [];
-    if (showTreasures) {
-      treasurePoints.forEach((point, index) => {
-        const overlay = new maps.CustomOverlay({
-          content: createTreasureMarker(index, chestCount, completedToday, onTreasureSelect),
-          position: new maps.LatLng(point.lat, point.lng),
-          xAnchor: 0.5,
-          yAnchor: 1,
-          zIndex: 5,
-        });
-        overlay.setMap(map);
-        overlays.push(overlay);
-      });
-    }
+    const locationAtmosphereElement = createLocationAtmosphere();
+    const locationAtmosphereOverlay = new maps.CustomOverlay({
+      content: locationAtmosphereElement,
+      position: new maps.LatLng(CAMPUS_CENTER.lat, CAMPUS_CENTER.lng),
+      xAnchor: 0.5,
+      yAnchor: 0.5,
+      zIndex: 2,
+    });
+    locationAtmosphereOverlay.setMap(map);
+    locationAtmosphereOverlayRef.current = locationAtmosphereOverlay;
+    locationAtmosphereElementRef.current = locationAtmosphereElement;
+    const atmosphereFrame = window.requestAnimationFrame(() => {
+      if (locationAtmosphereElement.parentElement) {
+        locationAtmosphereElement.parentElement.style.pointerEvents = "none";
+      }
+    });
 
+    const explorerMarker = createExplorerMarker();
     const explorerOverlay = new maps.CustomOverlay({
-      content: createExplorerMarker(),
+      content: explorerMarker,
       position: new maps.LatLng(CAMPUS_CENTER.lat, CAMPUS_CENTER.lng),
       xAnchor: 0.5,
       yAnchor: 0.5,
@@ -222,20 +240,45 @@ export function KakaoExpeditionMap({
     });
     explorerOverlay.setMap(map);
     explorerOverlayRef.current = explorerOverlay;
-    overlays.push(explorerOverlay);
+    explorerMarkerRef.current = explorerMarker;
 
     const handleResize = () => map.relayout();
     window.addEventListener("resize", handleResize);
 
     return () => {
+      window.cancelAnimationFrame(atmosphereFrame);
       window.removeEventListener("resize", handleResize);
-      overlays.forEach((overlay) => overlay.setMap(null));
+      locationAtmosphereOverlay.setMap(null);
+      explorerOverlay.setMap(null);
       explorerOverlayRef.current = null;
+      explorerMarkerRef.current = null;
+      locationAtmosphereOverlayRef.current = null;
+      locationAtmosphereElementRef.current = null;
     };
+  }, [status]);
+
+  useEffect(() => {
+    const map = mapRef.current;
+    const maps = mapsApiRef.current;
+    if (status !== "ready" || !map || !maps || !showTreasures) return;
+
+    const overlays = treasurePoints.map((point, index) => {
+      const overlay = new maps.CustomOverlay({
+        content: createTreasureMarker(index, chestCount, completedToday, onTreasureSelect),
+        position: new maps.LatLng(point.lat, point.lng),
+        xAnchor: 0.5,
+        yAnchor: 1,
+        zIndex: 5,
+      });
+      overlay.setMap(map);
+      return overlay;
+    });
+
+    return () => overlays.forEach((overlay) => overlay.setMap(null));
   }, [chestCount, completedToday, onTreasureSelect, showTreasures, status]);
 
   useEffect(() => {
-    if (focusRequest === 0 || status !== "ready") return;
+    if (status !== "ready") return;
     const map = mapRef.current;
     const maps = mapsApiRef.current;
     if (!map || !maps) return;
@@ -243,21 +286,26 @@ export function KakaoExpeditionMap({
     const moveTo = (position: Coordinates) => {
       const nextPosition = new maps.LatLng(position.lat, position.lng);
       explorerOverlayRef.current?.setPosition(nextPosition);
+      locationAtmosphereOverlayRef.current?.setPosition(nextPosition);
+      if (explorerMarkerRef.current) explorerMarkerRef.current.dataset.visible = "true";
+      if (locationAtmosphereElementRef.current) locationAtmosphereElementRef.current.dataset.visible = "true";
       map.panTo(nextPosition);
       onPositionChange(position);
+      onLocationStatusChange("ready");
     };
 
     if (!navigator.geolocation) {
-      moveTo(CAMPUS_CENTER);
+      onLocationStatusChange("unavailable");
       return;
     }
 
+    onLocationStatusChange("locating");
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => moveTo({ lat: coords.latitude, lng: coords.longitude }),
-      () => moveTo(CAMPUS_CENTER),
+      () => onLocationStatusChange("unavailable"),
       { enableHighAccuracy: true, maximumAge: 30_000, timeout: 8_000 },
     );
-  }, [focusRequest, onPositionChange, status]);
+  }, [focusRequest, onLocationStatusChange, onPositionChange, status]);
 
   return (
     <div className="kakao-map-layer" data-status={status}>

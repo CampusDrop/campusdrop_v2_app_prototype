@@ -165,8 +165,32 @@
 .kakao-map-status > span { display: grid; gap: .08rem; }
 .kakao-map-status b { font-size: .65rem; }
 .kakao-map-status small { color: var(--color-text-muted); font-size: .5rem; line-height: 1.35; }
+.kakao-location-atmosphere {
+  background:
+    radial-gradient(circle at center,
+      transparent 0 4.5rem,
+      color-mix(in srgb, var(--color-explore-map-wash) 6%, transparent) 8.5rem,
+      color-mix(in srgb, var(--color-explore-map-depth) 18%, transparent) 15rem,
+      color-mix(in srgb, var(--color-explore-map-depth) 38%, transparent) 27rem,
+      color-mix(in srgb, #061817 70%, transparent) 56rem);
+  border-radius: 50%;
+  height: 180vmax;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 520ms var(--ease-standard);
+  width: 180vmax;
+}
+.kakao-location-atmosphere[data-visible="true"] { opacity: .82; }
 .kakao-treasure-marker { position: relative; }
-.kakao-current-location { left: auto; position: relative; top: auto; }
+.kakao-current-location {
+  left: auto;
+  opacity: 0;
+  position: relative;
+  top: auto;
+  transition: opacity var(--duration-normal), transform var(--duration-normal);
+  transform: scale(.84);
+}
+.kakao-current-location[data-visible="true"] { opacity: 1; transform: scale(1); }
 .expedition-map-canvas[data-map-ready="true"] :is(
   .campus-map-grid,
   .campus-map-contours,
@@ -298,6 +322,8 @@
 }
 .map-coordinate-readout b { align-items: center; display: flex; font-size: .45rem; gap: .25rem; }
 .map-coordinate-readout i { animation: gps-blink 1.7s ease-in-out infinite; background: var(--color-success); border-radius: 50%; box-shadow: 0 0 6px rgb(79 123 98 / 42%); display: block; height: .35rem; width: .35rem; }
+.map-coordinate-readout[data-location-status="locating"] i { background: var(--color-explore-map-signal); }
+.map-coordinate-readout[data-location-status="unavailable"] i { animation: none; background: var(--color-text-disabled); box-shadow: none; }
 
 .map-treasure-layer { inset: 0; position: absolute; z-index: 4; }
 .map-route-dots { border-top: 3px dashed color-mix(in srgb, var(--color-explore-map-signal) 64%, transparent); display: block; filter: drop-shadow(0 1px 1px rgb(255 253 248 / 70%)); position: absolute; transform-origin: left; z-index: 2; }
@@ -358,8 +384,8 @@
   top: 49%;
   z-index: 5;
 }
-.current-location-pin em { animation: expedition-scan 2.2s ease-out infinite; border: 1px solid #74c4c2; border-radius: 50%; height: 4.5rem; position: absolute; top: -1rem; width: 4.5rem; }
-.current-location-pin i { align-items: center; background: #2e8585; border: 2px solid #d5efea; border-radius: 50%; box-shadow: 0 0 0 .4rem rgb(77 184 181 / 17%), 0 8px 14px rgb(9 31 30 / 28%); color: white; display: flex; font-size: 1rem; font-style: normal; height: 2.55rem; justify-content: center; width: 2.55rem; }
+.current-location-pin em { animation: expedition-scan 2.2s ease-out infinite; border: 1px solid var(--color-explore-border); border-radius: 50%; box-shadow: 0 0 0 .18rem color-mix(in srgb, var(--color-explore-map-signal) 12%, transparent); height: 4.5rem; position: absolute; top: -1rem; width: 4.5rem; }
+.current-location-pin i { align-items: center; background: var(--color-explore-map-wash); border: 2px solid var(--color-explore-surface-soft); border-radius: 50%; box-shadow: 0 0 0 .4rem color-mix(in srgb, var(--color-explore-map-wash) 20%, transparent), 0 8px 14px color-mix(in srgb, var(--color-explore-map-depth) 32%, transparent); color: var(--color-explore-text); display: flex; font-size: 1rem; font-style: normal; height: 2.55rem; justify-content: center; width: 2.55rem; }
 .current-location-pin span { background: rgb(255 253 248 / 92%); border: 1px solid var(--color-border); border-radius: var(--radius-pill); color: var(--color-accent-special); font-size: .48rem; font-weight: 700; margin-top: .3rem; padding: .22rem .4rem; }
 .map-location-control {
   backdrop-filter: blur(12px);
