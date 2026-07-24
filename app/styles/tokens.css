@@ -19,13 +19,13 @@
    * Foundation palette
    * Components should prefer the semantic tokens below.
    */
-  --color-brand-50: #f3f7fb;
-  --color-brand-100: #e4edf6;
-  --color-brand-200: #c8d9e9;
-  --color-brand-400: #4e729c;
-  --color-brand-500: #17365f;
-  --color-brand-600: #122e52;
-  --color-brand-700: #0d2442;
+  --color-brand-50: #f2f8f8;
+  --color-brand-100: #deefee;
+  --color-brand-200: #b9d9d7;
+  --color-brand-400: #4f918e;
+  --color-brand-500: #1e5f5d;
+  --color-brand-600: #174e4c;
+  --color-brand-700: #103b3a;
 
   --color-neutral-0: #ffffff;
   --color-neutral-50: #f7f9fc;
@@ -39,9 +39,9 @@
   --color-danger-700: #9f352d;
   --color-success-100: #e5f2eb;
   --color-success-500: #2f7d59;
-  --color-accent-100: #f1f7dc;
-  --color-accent-500: #a9cc3a;
-  --color-accent-700: #718c22;
+  --color-accent-100: #faebd9;
+  --color-accent-500: #c67314;
+  --color-accent-700: #8d4e0f;
 
   /* Semantic colors */
   --color-canvas: var(--color-neutral-50);
@@ -53,9 +53,9 @@
   --color-text-muted: var(--color-neutral-700);
   --color-text-disabled: var(--color-neutral-500);
   --color-text-on-brand: var(--color-neutral-0);
-  --color-text-on-accent: var(--color-brand-700);
+  --color-text-on-accent: #111111;
   --color-text-on-dark: var(--color-neutral-50);
-  --color-text-on-dark-muted: #c6d3e0;
+  --color-text-on-dark-muted: #c4d9d7;
   --color-border: var(--color-neutral-300);
   --color-border-strong: #aab8c7;
   --color-action: var(--color-brand-500);
@@ -132,10 +132,10 @@
   --radius-md: 1.125rem;
   --radius-lg: 1.75rem;
   --radius-pill: 999px;
-  --shadow-sm: 0 8px 24px rgb(23 54 95 / 8%);
-  --shadow-md: 0 18px 46px rgb(23 54 95 / 13%);
-  --shadow-nav: 0 12px 36px rgb(13 36 66 / 17%);
-  --shadow-action: 0 8px 20px rgb(23 54 95 / 24%);
+  --shadow-sm: 0 8px 24px rgb(30 95 93 / 8%);
+  --shadow-md: 0 18px 46px rgb(30 95 93 / 13%);
+  --shadow-nav: 0 12px 36px rgb(16 59 58 / 17%);
+  --shadow-action: 0 8px 20px rgb(30 95 93 / 24%);
   --duration-fast: 160ms;
   --duration-normal: 240ms;
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);
