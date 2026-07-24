@@ -1,13 +1,18 @@
 .splash-screen { background: linear-gradient(165deg, var(--color-canvas) 50%, var(--color-brand-100)); display: flex; flex-direction: column; gap: 1.1rem; height: 100%; justify-content: flex-end; overflow: hidden; padding: 2rem 1.25rem; position: relative; }
-.splash-screen h1 { color: var(--color-brand-500); font-size: 4.5rem; letter-spacing: -.075em; line-height: .76; margin: .8rem 0 1.25rem; }
 .splash-screen p:not(.eyebrow) { color: var(--color-ink-700); }
+.splash-copy { display: grid; gap: .8rem; position: relative; z-index: 1; }
+.splash-logo { align-items: flex-end; gap: .8rem; margin: .15rem 0 .35rem; }
+.splash-logo .brand-logo-mark { height: 6.2rem; }
+.splash-logo .brand-logo-name { font-size: 2.75rem; padding-bottom: .35rem; }
 .splash-art { height: 39%; position: absolute; right: 0; top: 0; width: 100%; }
 .splash-art::before { background: var(--color-brand-500); border-radius: 50%; content: ""; height: 14rem; position: absolute; right: -4rem; top: -4rem; width: 14rem; }
+.splash-art::after { background: var(--color-accent-special); border-radius: 50%; box-shadow: 0 0 0 .7rem color-mix(in srgb, var(--color-accent-special) 18%, transparent); content: ""; height: 2.2rem; left: 3rem; position: absolute; top: 3.5rem; width: 2.2rem; }
 .splash-art span { align-items: center; background: var(--color-surface); border-radius: var(--radius-lg); box-shadow: var(--shadow-md); display: flex; font-size: 2.5rem; height: 6rem; justify-content: center; position: absolute; transform: rotate(-8deg); width: 6rem; }
 .splash-art span:first-child { right: 7.5rem; top: 3rem; }
 .splash-art span:nth-child(2) { right: 1.3rem; top: 8.5rem; transform: rotate(9deg); }
 .splash-art span:last-child { right: 10rem; top: 11rem; transform: rotate(5deg); }
-.logo-orbit, .auth-logo { align-items: center; background: var(--color-brand-500); border-radius: 50% 50% 50% 20%; color: var(--color-text-on-brand); display: flex; font-size: 2rem; font-weight: 700; height: 5rem; justify-content: center; transform: rotate(-8deg); width: 5rem; }
+.logo-orbit, .auth-logo { align-items: center; display: inline-flex; height: 5.8rem; justify-content: center; width: 4.3rem; }
+.logo-orbit .brand-logo-mark, .auth-logo .brand-logo-mark { height: 5.8rem; }
 .choice-grid { display: grid; gap: .65rem; grid-template-columns: 1fr 1fr; margin-top: .4rem; }
 .choice-grid > button { background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); display: grid; gap: .2rem; min-height: 6rem; padding: 1rem; text-align: left; }
 .choice-grid > button span { color: var(--color-text-muted); font-size: .78rem; }
@@ -69,7 +74,7 @@ fieldset > small { color: var(--color-text-muted); }
 .preference-footer .primary { width: 100%; }
 .selection-count { color: var(--color-brand-600); font-size: .8rem; font-weight: 700; text-align: center; }
 .license-issued { align-items: center; display: flex; flex-direction: column; gap: 1.25rem; height: 100%; justify-content: center; padding: 1.5rem; text-align: center; }
-.license-card { background: linear-gradient(135deg, var(--color-ink-900), #5b4540); border-radius: var(--radius-lg); color: white; display: grid; gap: .3rem; padding: 1.4rem; text-align: left; transform: rotate(-3deg); width: 100%; }
+.license-card { background: linear-gradient(135deg, var(--color-brand-700), var(--color-brand-400)); border-radius: var(--radius-lg); color: white; display: grid; gap: .3rem; padding: 1.4rem; text-align: left; transform: rotate(-3deg); width: 100%; }
 .license-card > span { color: var(--color-yellow-300); font-size: 2.5rem; }
 .license-card > small { letter-spacing: .08em; }
 .license-issued > .primary { width: 100%; }

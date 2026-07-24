@@ -1,6 +1,9 @@
 * { box-sizing: border-box; }
 html { background: var(--color-surface-selected); }
 body { margin: 0; background: var(--color-canvas); color: var(--color-text); font-family: var(--font-sans); font-weight: 300; line-height: 1.5; }
+.brand-logo { align-items: center; display: inline-flex; line-height: 1; }
+.brand-logo-mark { display: block; height: auto; object-fit: contain; width: auto; }
+.brand-logo-name { color: var(--color-brand-500); font-weight: 700; letter-spacing: -.045em; }
 button, input, select, textarea { color: inherit; font: inherit; }
 button { border: 0; cursor: pointer; }
 button:disabled { cursor: not-allowed; opacity: .45; }
@@ -11,7 +14,7 @@ h1 { font-size: 2rem; letter-spacing: -.045em; line-height: 1.14; }
 h2 { font-size: 1.25rem; letter-spacing: -.025em; }
 h3 { font-size: 1.05rem; letter-spacing: -.02em; }
 small { font-size: .75rem; }
-::selection { background: var(--color-highlight); color: var(--color-text); }
+::selection { background: var(--color-highlight); color: var(--color-text-on-accent); }
 .muted { color: var(--color-text-muted); }
 .eyebrow { color: var(--color-brand-600); font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .step-label, .mission-kicker { color: var(--color-brand-600); font-size: .78rem; font-weight: 700; letter-spacing: .05em; }

@@ -19,44 +19,46 @@
    * Foundation palette
    * Components should prefer the semantic tokens below.
    */
-  --color-brand-50: #fff9ec;
-  --color-brand-100: #fff3d9;
-  --color-brand-200: #eedbb0;
-  --color-brand-400: #b59b63;
-  --color-brand-500: #8c743e;
-  --color-brand-600: #78602f;
-  --color-brand-700: #614b22;
+  --color-brand-50: #f3f7fb;
+  --color-brand-100: #e4edf6;
+  --color-brand-200: #c8d9e9;
+  --color-brand-400: #4e729c;
+  --color-brand-500: #17365f;
+  --color-brand-600: #122e52;
+  --color-brand-700: #0d2442;
 
   --color-neutral-0: #ffffff;
-  --color-neutral-50: #fffdf8;
-  --color-neutral-300: #ddd3be;
-  --color-neutral-500: #a59b88;
-  --color-neutral-700: #6b6252;
-  --color-neutral-900: #2f281c;
+  --color-neutral-50: #f7f9fc;
+  --color-neutral-300: #d8e0e8;
+  --color-neutral-500: #98a3b0;
+  --color-neutral-700: #5c6877;
+  --color-neutral-900: #162231;
 
   --color-danger-100: #fbeae7;
   --color-danger-500: #c84b40;
   --color-danger-700: #9f352d;
-  --color-success-100: #e8f2ea;
-  --color-success-500: #4f7b62;
-  --color-accent-100: #e4f0f0;
-  --color-accent-500: #467278;
+  --color-success-100: #e5f2eb;
+  --color-success-500: #2f7d59;
+  --color-accent-100: #f1f7dc;
+  --color-accent-500: #a9cc3a;
+  --color-accent-700: #718c22;
 
   /* Semantic colors */
   --color-canvas: var(--color-neutral-50);
   --color-surface: var(--color-neutral-0);
   --color-surface-soft: var(--color-brand-100);
   --color-surface-selected: var(--color-brand-200);
-  --color-surface-dark: var(--color-neutral-900);
+  --color-surface-dark: var(--color-brand-700);
   --color-text: var(--color-neutral-900);
   --color-text-muted: var(--color-neutral-700);
   --color-text-disabled: var(--color-neutral-500);
   --color-text-on-brand: var(--color-neutral-0);
+  --color-text-on-accent: var(--color-brand-700);
   --color-text-on-dark: var(--color-neutral-50);
-  --color-text-on-dark-muted: #cfc6b5;
+  --color-text-on-dark-muted: #c6d3e0;
   --color-border: var(--color-neutral-300);
-  --color-border-strong: #b8a987;
-  --color-action: var(--color-brand-600);
+  --color-border-strong: #aab8c7;
+  --color-action: var(--color-brand-500);
   --color-action-hover: var(--color-brand-700);
   --color-action-soft: var(--color-brand-100);
   --color-danger: var(--color-danger-500);
@@ -67,8 +69,8 @@
   --color-success-soft: var(--color-success-100);
   --color-accent-special: var(--color-accent-500);
   --color-accent-special-soft: var(--color-accent-100);
-  --color-highlight: var(--color-brand-200);
-  --color-focus: var(--color-accent-special);
+  --color-highlight: var(--color-accent-500);
+  --color-focus: var(--color-brand-500);
 
   /* Compatibility aliases for existing prototype components */
   --color-white: var(--color-neutral-0);
@@ -119,10 +121,10 @@
   --radius-md: 1.125rem;
   --radius-lg: 1.75rem;
   --radius-pill: 999px;
-  --shadow-sm: 0 8px 24px rgb(80 64 30 / 8%);
-  --shadow-md: 0 18px 46px rgb(80 64 30 / 13%);
-  --shadow-nav: 0 12px 36px rgb(64 49 23 / 17%);
-  --shadow-action: 0 8px 20px rgb(120 96 47 / 24%);
+  --shadow-sm: 0 8px 24px rgb(23 54 95 / 8%);
+  --shadow-md: 0 18px 46px rgb(23 54 95 / 13%);
+  --shadow-nav: 0 12px 36px rgb(13 36 66 / 17%);
+  --shadow-action: 0 8px 20px rgb(23 54 95 / 24%);
   --duration-fast: 160ms;
   --duration-normal: 240ms;
   --ease-standard: cubic-bezier(0.2, 0.8, 0.2, 1);

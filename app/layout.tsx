@@ -1,7 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
 import type { ReactNode } from "react";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  themeColor: "#17365F",
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -17,6 +21,10 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     description:
       "GPS와 AR 단서를 팀원들과 해결하고 캠퍼스 혜택을 받는 협동 방탈출 탐험 앱 프로토타입입니다.",
+    icons: {
+      icon: "/brand/campusdrop-logo.png",
+      apple: "/brand/campusdrop-logo.png",
+    },
     openGraph: {
       title: "CampusDrop",
       description: "캠퍼스가 게임판이 됩니다",

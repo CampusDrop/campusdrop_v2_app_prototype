@@ -4,6 +4,7 @@ import { usePathname, useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { translate } from "@/lib/prototype/i18n";
 import { useDemo } from "./DemoProvider";
+import { BrandLogo } from "./ui";
 
 const titleByPath: Record<string, string> = {
   "/themes": "테마",
@@ -52,7 +53,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       <div className={`app-frame ${game ? "game-mode" : ""} ${mapMode ? "map-mode" : ""}`}>
         {!onboarding && !game && !mapMode && (
           <header className="app-header">
-            {showBack ? <button className="round-button" onClick={() => router.back()} aria-label="뒤로가기">‹</button> : <span className="mini-brand">CampusDrop</span>}
+            {showBack ? <button className="round-button" onClick={() => router.back()} aria-label="뒤로가기">‹</button> : <BrandLogo className="mini-brand" withName />}
             <strong>{showBack ? title : ""}</strong>
             <button className="round-button" onClick={() => router.push("/settings")} aria-label="설정">⋯</button>
           </header>

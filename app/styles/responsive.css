@@ -12,5 +12,5 @@
   .choice-grid { grid-template-columns: 1fr; }
 }
 @media (min-width: 900px) {
-  .prototype-stage::before { color: rgb(41 35 33 / 48%); content: "CampusDrop · Mobile Prototype"; font-size: .78rem; font-weight: 700; left: 2rem; letter-spacing: .08em; position: fixed; top: 2rem; }
+  .prototype-stage::before { color: color-mix(in srgb, var(--color-brand-700) 48%, transparent); content: "CampusDrop · Mobile Prototype"; font-size: .78rem; font-weight: 700; left: 2rem; letter-spacing: .08em; position: fixed; top: 2rem; }
 }

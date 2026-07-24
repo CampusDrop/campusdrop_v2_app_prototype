@@ -1,7 +1,25 @@
 "use client";
 
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { useDemo } from "./DemoProvider";
+
+export function BrandLogo({ className = "", withName = false }: { className?: string; withName?: boolean }) {
+  return (
+    <span className={`brand-logo ${className}`.trim()} aria-label="CampusDrop">
+      <Image
+        className="brand-logo-mark"
+        src={`${import.meta.env.BASE_URL}brand/campusdrop-logo.png`}
+        alt=""
+        width={116}
+        height={159}
+        priority
+        unoptimized
+      />
+      {withName && <span className="brand-logo-name">CampusDrop</span>}
+    </span>
+  );
+}
 
 export function Progress({ value, max = 100 }: { value: number; max?: number }) {
   return <div className="progress" aria-label={`${value} / ${max}`}><span style={{ width: `${Math.min(100, value / max * 100)}%` }} /></div>;

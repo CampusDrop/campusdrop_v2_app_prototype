@@ -1,5 +1,5 @@
 .progress { background: var(--color-brand-100); border-radius: var(--radius-pill); height: .45rem; overflow: hidden; width: 100%; }
-.progress > span { background: linear-gradient(90deg, var(--color-brand-600), var(--color-brand-400)); border-radius: inherit; display: block; height: 100%; transition: width .6s var(--ease-standard); }
+.progress > span { background: linear-gradient(90deg, var(--color-brand-500), var(--color-accent-special)); border-radius: inherit; display: block; height: 100%; transition: width .6s var(--ease-standard); }
 .tag { background: var(--color-brand-50); border-radius: var(--radius-pill); color: var(--color-text-muted); display: inline-flex; font-size: .65rem; font-style: normal; font-weight: 700; padding: .28rem .55rem; }
 .tag-brand { background: var(--color-brand-100); color: var(--color-brand-700); }
 .tag-mint { background: var(--color-success-soft); color: var(--color-success); }
@@ -14,7 +14,7 @@
 .state-card > p { color: var(--color-text-muted); font-size: .8rem; }
 .modal-backdrop { align-items: flex-end; background: rgb(24 18 16 / 48%); display: flex; inset: 0; position: absolute; z-index: 40; }
 .modal { background: var(--color-canvas); border-radius: 1.5rem 1.5rem 0 0; display: grid; gap: 1rem; padding: .7rem 1rem 1.4rem; width: 100%; }
-.modal-handle { background: #d5c9c2; border-radius: var(--radius-pill); height: .25rem; justify-self: center; width: 2.5rem; }
+.modal-handle { background: var(--color-border-strong); border-radius: var(--radius-pill); height: .25rem; justify-self: center; width: 2.5rem; }
 .modal > .primary { width: 100%; }
 .modal-actions { display: grid; gap: .6rem; grid-template-columns: 1fr 1fr; }
 .menu-list { display: grid; gap: .2rem; }
@@ -36,7 +36,7 @@
 .expedition-top > small, .expedition-card > p { color: var(--color-text-muted); font-size: .75rem; }
 .member-row { align-items: center; display: flex; margin-top: .25rem; }
 .member-row > span, .member-row > i { align-items: center; background: var(--color-brand-100); border: 2px solid white; border-radius: 50%; display: flex; font-style: normal; height: 1.9rem; justify-content: center; margin-right: -.35rem; width: 1.9rem; }
-.member-row > i { background: #f0e9e4; }
+.member-row > i { background: var(--color-brand-50); }
 .member-row > small { color: var(--color-text-muted); margin-left: .8rem; }
 .info-list { display: grid; gap: .7rem; }
 .info-list > div { align-items: center; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); display: flex; gap: .75rem; padding: .8rem; }

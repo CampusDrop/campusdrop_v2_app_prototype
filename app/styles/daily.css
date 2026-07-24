@@ -628,7 +628,7 @@
   position: relative;
 }
 .quest-brief-card::before {
-  background: repeating-linear-gradient(90deg, #8c743e 0 .45rem, transparent .45rem .8rem);
+  background: repeating-linear-gradient(90deg, var(--color-brand-500) 0 .45rem, transparent .45rem .8rem);
   border-radius: var(--radius-pill);
   content: "";
   height: .24rem;

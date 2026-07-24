@@ -23,6 +23,7 @@ import { FriendQrScanScreen } from "./screens/FriendQrScanScreen";
 import { CompletedThemesScreen, LevelScreen, LicenseScreen, MyScreen } from "./screens/MyScreens";
 import { ReportScreen, SettingsScreen } from "./screens/SettingsReportScreens";
 import { ArtifactCollectionScreen, DailyArtifactHomeScreen, DailyArtifactHuntScreen, DailyArtifactQuizScreen, DailyArtifactResultScreen } from "./screens/DailyArtifactScreens";
+import { BrandLogo } from "./ui";
 
 export function PrototypeRouter() {
   const path = usePathname();
@@ -30,7 +31,7 @@ export function PrototypeRouter() {
   const { state } = useDemo();
   const requiredRoute = getRequiredRoute(path, state);
   useEffect(() => { if (requiredRoute) router.replace(requiredRoute); }, [requiredRoute, router]);
-  if (!state.hydrated || requiredRoute) return <AppShell><div className="center-screen"><div className="logo-orbit">D</div><p>입장 조건을 확인하는 중…</p></div></AppShell>;
+  if (!state.hydrated || requiredRoute) return <AppShell><div className="center-screen"><BrandLogo className="logo-orbit" /><p>입장 조건을 확인하는 중…</p></div></AppShell>;
   let screen = <NotFoundScreen />;
   if (path === "/") screen = <SplashScreen />;
   else if (path === "/onboarding/language") screen = <LanguageScreen />;

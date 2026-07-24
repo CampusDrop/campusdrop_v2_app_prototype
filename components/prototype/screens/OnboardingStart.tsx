@@ -5,17 +5,17 @@ import { useRouter } from "next/navigation";
 import { languageOptions, translate } from "@/lib/prototype/i18n";
 import type { AuthProvider } from "@/lib/prototype/types";
 import { useDemo } from "../DemoProvider";
-import { Modal } from "../ui";
+import { BrandLogo, Modal } from "../ui";
 
 export function SplashScreen() {
   const router = useRouter();
   const { state, update } = useDemo();
   useEffect(() => { if (state.hydrated && state.onboarded) router.replace("/home"); }, [router, state.hydrated, state.onboarded]);
-  if (!state.hydrated) return <div className="center-screen"><div className="logo-orbit">D</div><p>캠퍼스를 불러오는 중…</p></div>;
+  if (!state.hydrated) return <div className="center-screen"><BrandLogo className="logo-orbit" /><p>캠퍼스를 불러오는 중…</p></div>;
   return (
     <div className="splash-screen">
       <div className="splash-art"><span>🔑</span><span>🏫</span><span>🧩</span></div>
-      <div><p className="eyebrow">CAMPUS ESCAPE ADVENTURE</p><h1>Campus<br />Drop</h1><p>캠퍼스가 게임판이 됩니다.<br />함께 해결하고, 새로운 친구를 만나보세요.</p></div>
+      <div className="splash-copy"><p className="eyebrow">CAMPUS ESCAPE ADVENTURE</p><BrandLogo className="splash-logo" withName /><p>캠퍼스가 게임판이 됩니다.<br />함께 해결하고, 새로운 친구를 만나보세요.</p></div>
       <div className="stack-actions"><button className="primary" onClick={() => router.push("/onboarding/language")}>처음부터 시작</button><button className="secondary" onClick={() => { update({ onboarded: true, authProvider: "kakao", verified: true, profileReady: true, interests: ["맛집·카페", "게임", "사진", "여행"], hobbies: ["러닝", "요리", "보드게임"], license: true }); router.push("/home"); }}>핵심 시연 바로 시작</button></div>
     </div>
   );
@@ -59,7 +59,7 @@ export function AuthScreen() {
     router.push("/verification");
   }
   return (
-    <section className="onboarding-screen auth-screen"><div className="auth-logo">D</div><p className="step-label">필수 1 / 2</p><h1>계정으로<br />로그인해 주세요</h1><p className="muted">세 가지 방법 중 하나를 선택해야 계속할 수 있어요.</p><div className="provider-list"><button className="provider-button kakao" onClick={() => login("kakao", "카카오")}><span>💬</span><b>카카오로 계속</b></button><button className="provider-button google" onClick={() => login("google", "Google")}><span>G</span><b>Google로 계속</b></button><button className="provider-button apple" onClick={() => login("apple", "Apple")}><span>●</span><b>Apple로 계속</b></button></div><div className="auth-requirement"><b>다음 단계도 필수예요</b><p>로그인 후 학교 인증까지 완료해야 CampusDrop에 입장할 수 있어요.</p></div><p className="legal">계속하면 <button onClick={() => setTerms(true)}>이용약관 및 개인정보처리방침</button>에 동의하게 됩니다.</p>
+    <section className="onboarding-screen auth-screen"><BrandLogo className="auth-logo" /><p className="step-label">필수 1 / 2</p><h1>계정으로<br />로그인해 주세요</h1><p className="muted">세 가지 방법 중 하나를 선택해야 계속할 수 있어요.</p><div className="provider-list"><button className="provider-button kakao" onClick={() => login("kakao", "카카오")}><span>💬</span><b>카카오로 계속</b></button><button className="provider-button google" onClick={() => login("google", "Google")}><span>G</span><b>Google로 계속</b></button><button className="provider-button apple" onClick={() => login("apple", "Apple")}><span>●</span><b>Apple로 계속</b></button></div><div className="auth-requirement"><b>다음 단계도 필수예요</b><p>로그인 후 학교 인증까지 완료해야 CampusDrop에 입장할 수 있어요.</p></div><p className="legal">계속하면 <button onClick={() => setTerms(true)}>이용약관 및 개인정보처리방침</button>에 동의하게 됩니다.</p>
       {terms && <Modal title="약관 요약" onClose={() => setTerms(false)}><p className="muted">프로토타입은 실제 개인정보를 저장하거나 외부로 전송하지 않습니다.</p><button className="primary" onClick={() => setTerms(false)}>확인</button></Modal>}
     </section>
   );
