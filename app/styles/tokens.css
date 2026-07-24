@@ -72,6 +72,17 @@
   --color-highlight: var(--color-accent-500);
   --color-focus: var(--color-brand-500);
 
+  /* Exploration surfaces */
+  --color-explore-surface: var(--color-brand-700);
+  --color-explore-surface-raised: var(--color-brand-500);
+  --color-explore-surface-soft: var(--color-brand-100);
+  --color-explore-accent: var(--color-accent-500);
+  --color-explore-accent-soft: var(--color-accent-100);
+  --color-explore-text: var(--color-text-on-brand);
+  --color-explore-text-muted: var(--color-text-on-dark-muted);
+  --color-explore-text-on-accent: var(--color-text-on-accent);
+  --color-explore-border: var(--color-brand-400);
+
   /* Compatibility aliases for existing prototype components */
   --color-white: var(--color-neutral-0);
   --color-ink-900: var(--color-neutral-900);
