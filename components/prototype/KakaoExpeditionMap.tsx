@@ -262,6 +262,7 @@ export function KakaoExpeditionMap({
   return (
     <div className="kakao-map-layer" data-status={status}>
       <div ref={containerRef} className="kakao-map-surface" aria-label="세종대학교 주변 카카오 지도" />
+      <div className="kakao-map-brand-blur" aria-hidden="true" />
       {status !== "ready" && (
         <div className="kakao-map-status" role="status">
           <i>{status === "loading" ? "…" : "⌖"}</i>
