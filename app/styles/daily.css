@@ -168,17 +168,49 @@
 .kakao-location-atmosphere {
   background:
     radial-gradient(circle at center,
-      transparent 0 4.5rem,
-      color-mix(in srgb, var(--color-explore-map-wash) 6%, transparent) 8.5rem,
-      color-mix(in srgb, var(--color-explore-map-depth) 18%, transparent) 15rem,
-      color-mix(in srgb, var(--color-explore-map-depth) 38%, transparent) 27rem,
-      color-mix(in srgb, #061817 70%, transparent) 56rem);
+      transparent 0 4.8rem,
+      color-mix(in srgb, var(--color-explore-fog-near) 5%, transparent) 7.5rem,
+      color-mix(in srgb, var(--color-explore-fog-near) 14%, transparent) 12rem,
+      color-mix(in srgb, var(--color-explore-fog-mid) 34%, transparent) 21rem,
+      color-mix(in srgb, var(--color-explore-fog-far) 68%, transparent) 36rem);
   border-radius: 50%;
   height: 180vmax;
+  isolation: isolate;
   opacity: 0;
   pointer-events: none;
   transition: opacity 520ms var(--ease-standard);
   width: 180vmax;
+}
+.kakao-location-atmosphere::before {
+  background:
+    radial-gradient(circle at center,
+      transparent 0 8.15rem,
+      color-mix(in srgb, var(--color-explore-border) 22%, transparent) 8.2rem 8.26rem,
+      transparent 8.34rem),
+    radial-gradient(circle at center,
+      transparent 0 14.35rem,
+      color-mix(in srgb, var(--color-explore-fog-near) 13%, transparent) 14.4rem 14.47rem,
+      transparent 14.58rem);
+  content: "";
+  inset: 0;
+  position: absolute;
+}
+.kakao-location-atmosphere::after {
+  animation: expedition-fog-scan 7s linear infinite;
+  background:
+    conic-gradient(from 18deg,
+      transparent 0 76%,
+      color-mix(in srgb, var(--color-explore-fog-signal) 18%, transparent) 83%,
+      transparent 90%);
+  border-radius: 50%;
+  content: "";
+  height: 18rem;
+  left: 50%;
+  mask: radial-gradient(circle, transparent 0 5rem, #000 5.3rem 8.55rem, transparent 8.85rem);
+  position: absolute;
+  top: 50%;
+  -webkit-mask: radial-gradient(circle, transparent 0 5rem, #000 5.3rem 8.55rem, transparent 8.85rem);
+  width: 18rem;
 }
 .kakao-location-atmosphere[data-visible="true"] { opacity: .82; }
 .kakao-treasure-marker { position: relative; }
@@ -1274,6 +1306,10 @@
   0%, 100% { transform: translateX(0); }
   25% { transform: translateX(-.45rem); }
   75% { transform: translateX(.45rem); }
+}
+@keyframes expedition-fog-scan {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 @media (min-width: 760px) {

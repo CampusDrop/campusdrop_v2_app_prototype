@@ -85,6 +85,10 @@
   --color-explore-map-wash: var(--color-brand-500);
   --color-explore-map-depth: var(--color-brand-700);
   --color-explore-map-signal: var(--color-accent-500);
+  --color-explore-fog-near: var(--color-brand-500);
+  --color-explore-fog-mid: var(--color-brand-700);
+  --color-explore-fog-far: #061817;
+  --color-explore-fog-signal: var(--color-accent-500);
 
   /* Compatibility aliases for existing prototype components */
   --color-white: var(--color-neutral-0);
