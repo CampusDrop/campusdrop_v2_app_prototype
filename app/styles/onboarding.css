@@ -26,10 +26,10 @@
 .intro-screen h1 { margin: .4rem 0; }
 .auth-screen { justify-content: center; text-align: center; }
 .auth-screen .auth-logo { align-self: center; margin-bottom: .5rem; }
-.provider-list { display: grid; gap: .6rem; margin-top: .8rem; }
-.provider-button { align-items: center; border: 1px solid var(--color-border); border-radius: var(--radius-md); display: grid; gap: .7rem; grid-template-columns: 2rem 1fr 2rem; min-height: 3.35rem; padding: .7rem; width: 100%; }
-.provider-button::after { content: "›"; font-size: 1.3rem; }
+.provider-list { display: grid; gap: .55rem; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: .8rem; }
+.provider-button { align-items: center; border: 1px solid var(--color-border); border-radius: var(--radius-md); display: flex; flex-direction: column; gap: .35rem; justify-content: center; min-height: 5.25rem; padding: .65rem .35rem; width: 100%; }
 .provider-button span { font-size: 1.15rem; font-weight: 700; }
+.provider-button b { font-size: .72rem; line-height: 1; white-space: nowrap; }
 .provider-button.kakao { background: #fee500; color: #191600; }
 .provider-button.google { background: white; }
 .provider-button.google span { color: #4285f4; }
